@@ -91,7 +91,7 @@
   "sameAs": [
     "https://wa.me/15142248252"
   ],
-  "email": "info@montreallimousineservices.ca",
+  "email": "info@montreallimoservice.ca",
   "priceRange": "$$$"
 }
 </script>
@@ -3132,6 +3132,9 @@ html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
 }
 
 body{ padding-top:0 !important; }
+
+.site-head{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+#mobileDrawer{ z-index:9998; }
 </style>
 </head>
 <body>
@@ -3159,6 +3162,7 @@ body{ padding-top:0 !important; }
 <a class="btn btn-primary book-now" data-i18n="nav_booknow" href="booking.html">Book Now</a>
 </div>
 </div>
+</header>
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
 <a data-i18n="nav_book" href="booking.html">Book online</a>
 <a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
@@ -3169,10 +3173,9 @@ body{ padding-top:0 !important; }
 <a data-i18n="nav_faq" href="#faq">FAQ</a>
 <a data-i18n="nav_contact" href="#contact">Contact</a>
 <a href="tel:+15142248252">📞 +1 (514) 224-8252</a>
-<a href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request">✉️ info@montreallimousineservices.ca</a>
+<a href="mailto:info@montreallimoservice.ca?subject=Booking%20Request">✉️ info@montreallimoservice.ca</a>
 <a href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </nav>
-</header>
 <div aria-hidden="true" class="nav-overlay" id="drawerOverlay"></div>
 <div class="hero-wrap">
 <div class="hero-inner container">
@@ -3638,7 +3641,7 @@ body{ padding-top:0 !important; }
 <textarea data-i18n-ph="ph_details" id="co_details" placeholder="Typical routes, number of trips per month, vehicle preference, billing requirements…" style="margin-top:10px;"></textarea>
 <div class="actions" style="margin-top:12px;">
 <button class="btn btn-primary" data-i18n="corp_send" onclick="sendCorporateEmail()" type="button">Send corporate inquiry</button>
-<a class="btn" data-i18n="corp_email" href="mailto:info@montreallimousineservices.ca?subject=Corporate%20Account%20Request">Email us directly</a>
+<a class="btn" data-i18n="corp_email" href="mailto:info@montreallimoservice.ca?subject=Corporate%20Account%20Request">Email us directly</a>
 </div>
 <div class="tinyhint" data-i18n="corp_hint" style="margin-top:10px;">We can set up preferred rates, monthly billing, and detailed invoices for your accounting team.</div>
 </div>
@@ -3787,8 +3790,8 @@ body{ padding-top:0 !important; }
 <path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="2"></path>
 <path d="M4 6l8 7 8-7" fill="none" stroke="currentColor" stroke-width="2"></path>
 </svg>
-<a href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request&amp;body=Hello%20Montreal%20Limousine%20Service,%0D%0A%0D%0AI%20would%20like%20to%20book%20a%20ride.%0D%0A%0D%0APickup:%0D%0ADropoff:%0D%0ADate:%0D%0ATime:%0D%0APassengers:%0D%0A%0D%0AThank%20you.">
-            info@montreallimousineservices.ca
+<a href="mailto:info@montreallimoservice.ca?subject=Booking%20Request&amp;body=Hello%20Montreal%20Limousine%20Service,%0D%0A%0D%0AI%20would%20like%20to%20book%20a%20ride.%0D%0A%0D%0APickup:%0D%0ADropoff:%0D%0ADate:%0D%0ATime:%0D%0APassengers:%0D%0A%0D%0AThank%20you.">
+            info@montreallimoservice.ca
           </a>
 </p>
 <p>📞 <a href="tel:+15142248252">+1 (514) 224-8252</a></p>
@@ -3813,8 +3816,8 @@ body{ padding-top:0 !important; }
 </br></div>
 <div>
 <strong data-i18n="footer_contact">Contact</strong><br>
-<a href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request">
-          info@montreallimousineservices.ca
+<a href="mailto:info@montreallimoservice.ca?subject=Booking%20Request">
+          info@montreallimoservice.ca
         </a><br>
 <a href="tel:+15142248252">+1 (514) 224-8252</a>
 </br></br></div>
@@ -3827,7 +3830,7 @@ body{ padding-top:0 !important; }
 <a class="whatsapp-float" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 <div class="contact-bar">
 <a data-i18n="sticky_call" href="tel:+15142248252">Call</a>
-<a data-i18n="sticky_email" href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request">Email</a>
+<a data-i18n="sticky_email" href="mailto:info@montreallimoservice.ca?subject=Booking%20Request">Email</a>
 <a data-i18n="sticky_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 <script>
@@ -5636,7 +5639,7 @@ function getQcCorridorBounds(){
       : `Hello Montreal Limousine Service,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n`;
 
     const mailto =
-      "mailto:info@montreallimousineservices.ca"
+      "mailto:info@montreallimoservice.ca"
       + "?subject=" + encodeURIComponent(subject)
       + "&body=" + encodeURIComponent(body);
 
@@ -6114,7 +6117,7 @@ function getQcCorridorBounds(){
 <div class="float-contact" aria-label="Quick contact">
 <a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Call</a>
 <a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
-<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request"><span aria-hidden="true">&#9993;&#65038;</span> Email</a>
+<a class="fc-mail" href="mailto:info@montreallimoservice.ca?subject=Booking%20Request"><span aria-hidden="true">&#9993;&#65038;</span> Email</a>
 </div>
 </body>
 </html>
