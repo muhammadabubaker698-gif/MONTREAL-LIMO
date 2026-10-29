@@ -3144,6 +3144,31 @@ h1.hero-title{ margin:16px 0 0; }
 .hero-title{ font-size:clamp(40px,4.6vw,60px); }
 .hero-sub{ margin-top:12px; }
 .hero-left .actions{ margin-top:22px; }
+
+/* ===== 9/10 PASS: trust strip, reviews, capacity, routes ===== */
+.trust-strip{ background:#ffffff; border-bottom:1px solid #E5E7EB; }
+.ts-row{ display:flex; flex-wrap:wrap; gap:8px 26px; justify-content:center; align-items:center; padding:14px 0; font-weight:700; font-size:13.5px; color:#111827; }
+.ts-row span::before{ content:"\2726"; color:#C5A253; margin-right:8px; }
+.ts-row .ts-rating{ color:#111827; text-decoration:none; font-weight:800; }
+.ts-row .ts-rating .stars{ color:#C5A253; letter-spacing:2px; }
+.cap{ margin-top:8px; font-size:13.5px; font-weight:700; color:#475467; }
+.rev-stars{ color:#C5A253; letter-spacing:3px; font-size:18px; }
+.rev-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px; }
+.rev-card{ background:#fff; border:1px solid #E5E7EB; border-radius:18px; padding:24px; box-shadow:0 14px 34px rgba(11,18,32,.06); margin:0; }
+.rev-card blockquote{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:19px; line-height:1.45; color:#111827; margin:0 0 12px; }
+.rev-card figcaption{ color:#B08D3E; font-weight:800; font-size:13px; letter-spacing:.06em; }
+.rev-card figcaption span{ color:#475467; letter-spacing:0; }
+.rev-actions{ margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+@media (max-width:760px){ .rev-grid{ grid-template-columns:1fr; } .ts-row{ gap:6px 16px; font-size:12.5px; } }
+.route-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+.route-card{ background:#fff; border:1px solid #E5E7EB; border-radius:18px; padding:22px; box-shadow:0 14px 34px rgba(11,18,32,.06); }
+.route-card h3{ font-size:19px; }
+.route-card .rmeta{ margin-top:6px; color:#475467; font-weight:600; font-size:14px; }
+.route-card .rprice{ margin-top:12px; font-family:"Playfair Display",Georgia,serif; font-size:30px; color:#111827; }
+.route-card .rprice small{ font-size:13px; color:#B08D3E; font-weight:800; letter-spacing:.08em; display:block; }
+.route-card .btn{ margin-top:14px; }
+@media (max-width:980px){ .route-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .route-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -3392,6 +3417,15 @@ h1.hero-title{ margin:16px 0 0; }
 </div>
 </div>
 </div>
+<div class="trust-strip"><div class="container ts-row">
+<a class="ts-rating" href="https://g.page/r/CUV1_J3hEqKGEAE" target="_blank" rel="noreferrer"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span data-i18n="ts_rating">5.0 on Google</span></a>
+<span data-i18n="ts_1">Flight tracking</span>
+<span data-i18n="ts_2">Free 60-min airport waiting</span>
+<span data-i18n="ts_3">Meet &amp; greet available</span>
+<span data-i18n="ts_4">Professional chauffeurs</span>
+<span data-i18n="ts_5">24/7 service</span>
+<span data-i18n="ts_6">Fixed pricing — no hidden fees</span>
+</div></div>
 <main class="container">
 
 <section class="section reveal" id="fleet">
@@ -3405,6 +3439,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Ultra-luxury • VIP airport transfers • ski trips</div>
 <div class="price">$150 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_escalade">&#128101; Up to 7 passengers &middot; &#129523; Up to 6 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="escalade" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="escalade" href="booking.html">Reserve by hour</a>
@@ -3419,6 +3454,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Spacious • luggage friendly • long rides</div>
 <div class="price">$125 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_suburban">&#128101; Up to 7 passengers &middot; &#129523; Up to 7 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="suburban" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="suburban" href="booking.html">Reserve by hour</a>
@@ -3433,6 +3469,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Premium comfort • smooth ride • executive travel</div>
 <div class="price">$125 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_denali">&#128101; Up to 7 passengers &middot; &#129523; Up to 6 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="denali" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="denali" href="booking.html">Reserve by hour</a>
@@ -3447,6 +3484,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Comfort + value • airport transfers • city rides</div>
 <div class="price">$100 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_qx60">&#128101; Up to 6 passengers &middot; &#129523; Up to 4 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="qx60" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="qx60" href="booking.html">Reserve by hour</a>
@@ -3461,6 +3499,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Quiet • modern • eco-friendly</div>
 <div class="price">$100 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_tesla">&#128101; Up to 4 passengers &middot; &#129523; Up to 3 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="tesla" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="tesla" href="booking.html">Reserve by hour</a>
@@ -3475,6 +3514,7 @@ h1.hero-title{ margin:16px 0 0; }
 <div class="meta">Groups • events • ski luggage</div>
 <div class="price">$299 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
+<div class="cap" data-i18n="cap_sprinter">&#128101; Up to 11 passengers &middot; &#129523; Up to 12 large bags</div>
 <div class="actions actions-reserve">
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="sprinter" href="booking.html">Reserve Point A to Point B</a>
 <a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="sprinter" href="booking.html">Reserve by hour</a>
@@ -3484,9 +3524,30 @@ h1.hero-title{ margin:16px 0 0; }
 </div>
 </div>
 </section>
+<section class="section reveal" id="reviews">
+<h2 data-i18n="rev_title">What Our Clients Say</h2>
+<p class="subtitle"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span data-i18n="rev_rated">Rated 5.0 on Google</span></p>
+<div class="rev-grid">
+<figure class="rev-card"><blockquote data-i18n="rev_q1">&ldquo;If you&rsquo;re visiting Mont-Tremblant, this limo service is an absolute must.&rdquo;</blockquote><figcaption>&#9733;&#9733;&#9733;&#9733;&#9733; <span data-i18n="rev_src">Google review</span></figcaption></figure>
+<figure class="rev-card"><blockquote data-i18n="rev_q2">&ldquo;Visit with family to mont tramblat i use service is amazing&rdquo;</blockquote><figcaption>&#9733;&#9733;&#9733;&#9733;&#9733; <span data-i18n="rev_src">Google review</span></figcaption></figure>
+</div>
+<div class="rev-actions"><a class="btn btn-primary" href="https://g.page/r/CUV1_J3hEqKGEAE/review" target="_blank" rel="noreferrer" data-i18n="rev_write">Review us on Google</a><a class="btn" href="https://g.page/r/CUV1_J3hEqKGEAE" target="_blank" rel="noreferrer" data-i18n="rev_read">Read our reviews</a></div>
+</section>
+<section class="section reveal" id="popular-routes">
+<h2 data-i18n="routes_title">Popular Routes &amp; Starting Prices</h2>
+<p class="subtitle" data-i18n="routes_sub">Starting prices for the trips our clients book most — your exact price is confirmed instantly in the booking form, with no hidden fees.</p>
+<div class="route-grid">
+<div class="route-card"><h3>Montreal → YUL Airport</h3><div class="rmeta">24 km · ~30 min</div><div class="rprice"><small data-i18n="r_from">FROM</small>$80</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card"><h3>Montreal → Mont-Tremblant</h3><div class="rmeta">131 km · ~1 h 30</div><div class="rprice"><small data-i18n="r_from">FROM</small>$186</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card"><h3>YUL Airport → Mont-Tremblant</h3><div class="rmeta">122 km · ~1 h 25</div><div class="rprice"><small data-i18n="r_from">FROM</small>$350</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card"><h3>Montreal → Ottawa</h3><div class="rmeta">199 km · ~2 h 10</div><div class="rprice"><small data-i18n="r_from">FROM</small>$550</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card"><h3>Montreal → Quebec City</h3><div class="rmeta">263 km · ~2 h 55</div><div class="rprice"><small data-i18n="r_from">FROM</small>$730</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card"><h3>Montreal → Toronto</h3><div class="rmeta">542 km · ~5 h 25</div><div class="rprice"><small data-i18n="r_from">FROM</small>$1,460</div><a class="btn btn-primary" href="booking.html" data-i18n="r_book">Book this route</a></div>
+</div>
+</section>
 <section class="section reveal" id="premium-services">
 <h2>Montreal Limousine Service for Airport, Wedding, Corporate and Private Transportation</h2>
-<p class="subtitle">When people search for Montreal limo service, they are usually looking for reliability, presentation, and a company that feels established. This homepage is now structured around the core services customers actually book in Montreal: airport transportation, wedding limo service, executive travel, and private chauffeur rides.</p>
+<p class="subtitle">Airport pickups at YUL, wedding-day transportation, executive travel and private chauffeur rides — every trip backed by professional chauffeurs, premium vehicles and fixed, up-front pricing.</p>
 <div class="services-showcase">
   <div class="showcase-card">
     <h3>Airport limo service Montreal</h3>
@@ -3510,30 +3571,6 @@ h1.hero-title{ margin:16px 0 0; }
   </div>
 </div>
 </section>
-
-
-<section class="section reveal" id="corporate-accounts">
-<div class="container">
-<div class="section-head">
-<div>
-<div class="eyebrow" data-i18n="corpacct_eyebrow">Corporate Accounts</div>
-<h2 data-i18n="corpacct_title">Corporate accounts for Montreal businesses</h2>
-<p class="lead" data-i18n="corpacct_sub">Preferred rates, monthly packages and one dedicated contact for your team's travel — executives, clients and airport runs handled under a single account.</p>
-</div>
-</div>
-<div class="grid grid-3">
-<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c1t">Preferred corporate rates</h3><p data-i18n="corpacct_c1d">Volume-based pricing and monthly packages for regular business travel.</p></div></div>
-<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c2t">Detailed invoicing &amp; reporting</h3><p data-i18n="corpacct_c2d">Itemized monthly statements your accounting team will love — every ride, passenger and cost centre in one place.</p></div></div>
-<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c3t">Dedicated contact &amp; priority booking</h3><p data-i18n="corpacct_c3d">A single point of contact who knows your travellers, with priority dispatch for account holders.</p></div></div>
-</div>
-<div class="actions" style="margin-top:18px;">
-<a class="btn btn-primary" href="corporate-limo-montreal.html#corporate-form" data-i18n="corpacct_cta">Open a Corporate Account</a>
-<a class="btn" href="tel:+15142248252">Call +1 (514) 224-8252</a>
-</div>
-</div>
-</section>
-
-
 
 
 <section class="section reveal" id="luxury-experience">
@@ -3760,31 +3797,10 @@ h1.hero-title{ margin:16px 0 0; }
 
 <section class="section reveal" id="montreal-limo-service">
   <div class="seo-block">
-    <div class="seo-grid">
-      <div>
         <h2>Professional Montreal limo service for local and long-distance travel</h2>
-        <p>Montreal Limousine Service provides private chauffeur-driven transportation for Montréal–Trudeau Airport pickups, corporate travel, weddings, hotel transfers, hourly bookings, special events and point-to-point rides. Clients can reserve premium SUVs and larger vehicles for individuals, families, executives and groups.</p>
+        <p>Montreal Limo Service provides private chauffeur-driven transportation for Montréal–Trudeau Airport pickups, corporate travel, weddings, hotel transfers, hourly bookings, special events and point-to-point rides. Clients can reserve premium SUVs and larger vehicles for individuals, families, executives and groups.</p>
         <p>Our primary service area includes Downtown Montreal, Old Montreal, Laval, Dorval, West Island, Longueuil, Brossard, the South Shore and the North Shore. We also arrange direct private transfers from Montreal to Mont-Tremblant, Quebec City, Ottawa, Trois-Rivières, Saint-Sauveur and other regional destinations.</p>
         <p>For airport arrivals, provide your flight number so our team can coordinate pickup timing and monitor delays when available. Meet-and-greet service, luggage assistance, child-seat requests and multi-stop itineraries can be arranged in advance.</p>
-      </div>
-      <div>
-        <h3>Popular Montreal limousine services</h3>
-        <div class="seo-chips">
-          <span>Montreal limo service</span>
-          <span>Montreal limousine service</span>
-          <span>Limo service Montreal</span>
-          <span>Montreal airport limo</span>
-          <span>Wedding limo Montreal</span>
-          <span>Corporate limo Montreal</span>
-          <span>Hourly chauffeur Montreal</span>
-          <span>Luxury transportation Montreal</span>
-          <span>Mont-Tremblant limo service</span>
-          <span>Montreal to Quebec City car service</span>
-          <span>Laval limousine service</span>
-          <span>Montreal to Ottawa chauffeur</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -5753,6 +5769,30 @@ function getQcCorridorBounds(){
       btn_close: "Close",
 
       fleet_title: "Our Fleet",
+      routes_title: "Popular Routes & Starting Prices",
+      routes_sub: "Starting prices for the trips our clients book most — your exact price is confirmed instantly in the booking form, with no hidden fees.",
+      r_from: "FROM",
+      r_book: "Book this route",
+      ts_rating: "5.0 on Google",
+      ts_1: "Flight tracking",
+      ts_2: "Free 60-min airport waiting",
+      ts_3: "Meet & greet available",
+      ts_4: "Professional chauffeurs",
+      ts_5: "24/7 service",
+      ts_6: "Fixed pricing — no hidden fees",
+      rev_title: "What Our Clients Say",
+      rev_rated: "Rated 5.0 on Google",
+      rev_q1: "\u201CIf you\u2019re visiting Mont-Tremblant, this limo service is an absolute must.\u201D",
+      rev_q2: "\u201CVisit with family to mont tramblat i use service is amazing\u201D",
+      rev_src: "Google review",
+      rev_write: "Review us on Google",
+      rev_read: "Read our reviews",
+      cap_escalade: "👥 Up to 7 passengers · 🧳 Up to 6 large bags",
+      cap_suburban: "👥 Up to 7 passengers · 🧳 Up to 7 large bags",
+      cap_denali: "👥 Up to 7 passengers · 🧳 Up to 6 large bags",
+      cap_qx60: "👥 Up to 6 passengers · 🧳 Up to 4 large bags",
+      cap_tesla: "👥 Up to 4 passengers · 🧳 Up to 3 large bags",
+      cap_sprinter: "👥 Up to 11 passengers · 🧳 Up to 12 large bags",
       fleet_sub_html: "Premium vehicles for Montreal airport transfers, corporate travel, city rides, and special events. <b>Minimum 3 hours (hourly)</b> applies to all vehicles.",
       unit_hour: "hour",
       min_hours_html: "{n}-hour minimum",
@@ -5915,6 +5955,30 @@ function getQcCorridorBounds(){
       btn_close: "Fermer",
 
       fleet_title: "Notre flotte",
+      routes_title: "Itinéraires populaires et prix de départ",
+      routes_sub: "Des prix de départ pour les trajets les plus demandés — votre prix exact est confirmé instantanément dans le formulaire de réservation, sans frais cachés.",
+      r_from: "À PARTIR DE",
+      r_book: "Réserver cet itinéraire",
+      ts_rating: "5,0 sur Google",
+      ts_1: "Suivi de vol",
+      ts_2: "60 min d'attente gratuite à l'aéroport",
+      ts_3: "Accueil personnalisé disponible",
+      ts_4: "Chauffeurs professionnels",
+      ts_5: "Service 24/7",
+      ts_6: "Tarifs fixes — sans frais cachés",
+      rev_title: "Ce que disent nos clients",
+      rev_rated: "Noté 5,0 sur Google",
+      rev_q1: "\u201CIf you\u2019re visiting Mont-Tremblant, this limo service is an absolute must.\u201D",
+      rev_q2: "\u201CVisit with family to mont tramblat i use service is amazing\u201D",
+      rev_src: "Avis Google",
+      rev_write: "Évaluez-nous sur Google",
+      rev_read: "Lire nos avis",
+      cap_escalade: "👥 Jusqu'à 7 passagers · 🧳 Jusqu'à 6 gros bagages",
+      cap_suburban: "👥 Jusqu'à 7 passagers · 🧳 Jusqu'à 7 gros bagages",
+      cap_denali: "👥 Jusqu'à 7 passagers · 🧳 Jusqu'à 6 gros bagages",
+      cap_qx60: "👥 Jusqu'à 6 passagers · 🧳 Jusqu'à 4 gros bagages",
+      cap_tesla: "👥 Jusqu'à 4 passagers · 🧳 Jusqu'à 3 gros bagages",
+      cap_sprinter: "👥 Jusqu'à 11 passagers · 🧳 Jusqu'à 12 gros bagages",
       fleet_sub_html: "Véhicules haut de gamme pour les transferts aéroportuaires à Montréal, les trajets corporatifs, les déplacements en ville et les événements spéciaux. <b>Minimum 3 heures (à l’heure)</b> s’applique à tous les véhicules.",
       unit_hour: "heure",
       min_hours_html: "Minimum {n} heures",
