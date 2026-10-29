@@ -3118,6 +3118,20 @@ html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
   .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
   .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
 }
+
+/* ===== FIX v3: drawer clicks, mobile fit, brand nowrap ===== */
+#drawerOverlay{ z-index:900 !important; }
+.site-head .brand-link{ flex:0 0 auto; }
+.site-head .brand-name{ white-space:nowrap; }
+.brand-tag{ white-space:nowrap; }
+@media (max-width:860px){
+  .hero-inner{ padding:26px 18px 38px !important; }
+  .hero-title{ font-size:clamp(32px,9.2vw,40px) !important; }
+  .float-contact a{ padding:11px 4px; font-size:13.5px; }
+  body{ padding-bottom:86px; }
+}
+
+body{ padding-top:0 !important; }
 </style>
 </head>
 <body>
