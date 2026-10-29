@@ -111,6 +111,47 @@ footer{padding:34px 0 50px;color:var(--muted);text-align:center}
 .hero h1::after{ content:""; display:block; width:56px; height:3px; border-radius:2px; background:#C5A253; margin-top:18px; }
 footer{ background:#F2F4F7; }
 </style>
+
+<style>
+/* ===== ROYALMOUNT-STYLE BANNER + OVERLAP CARD ===== */
+.page-banner{ height:330px; background-size:cover; background-position:center; }
+.overlap-wrap{ max-width:900px; margin:-118px auto 0; padding:0 18px; position:relative; z-index:3; }
+.overlap-card{ background:#fff; border-radius:24px; box-shadow:0 30px 80px rgba(11,18,32,.16); border:1px solid rgba(11,18,32,.06); padding:42px 36px 36px; text-align:center; }
+.overlap-card .oc-eyebrow{ color:#B08D3E; font-weight:800; letter-spacing:.20em; font-size:12px; text-transform:uppercase; }
+.overlap-card h1{ font-family:"Playfair Display",Georgia,serif; font-size:clamp(30px,4.4vw,50px); line-height:1.08; margin-top:12px; }
+.overlap-card .oc-sub{ margin:16px auto 0; color:rgba(11,18,32,.66); font-weight:600; font-size:17px; max-width:62ch; }
+.overlap-card .oc-actions{ margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; align-items:center; }
+.oc-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; border-top:1px solid rgba(11,18,32,.08); margin-top:28px; padding-top:22px; }
+.oc-stats .st b{ display:block; font-family:"Playfair Display",Georgia,serif; font-size:24px; color:#B08D3E; }
+.oc-stats .st span{ font-size:12.5px; color:rgba(11,18,32,.60); font-weight:700; }
+.oc-points{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.oc-points div{ padding:10px 14px; border-radius:999px; background:rgba(11,18,32,.04); border:1px solid rgba(11,18,32,.08); font-weight:800; font-size:13.5px; }
+@media (max-width:760px){ .oc-stats{ grid-template-columns:repeat(2,1fr); } .page-banner{ height:230px; } .overlap-wrap{ margin-top:-84px; } .overlap-card{ padding:30px 20px 26px; } }
+/* pricing */
+.pricing-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px; }
+.price-card{ background:#fff; border:1px solid rgba(11,18,32,.09); border-radius:22px; padding:26px 20px; text-align:center; box-shadow:0 18px 44px rgba(11,18,32,.07); position:relative; display:flex; flex-direction:column; }
+.price-card.popular{ border:2px solid #C5A253; }
+.price-card .pop-badge{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#C5A253,#B08D3E); color:#fff; font-size:11.5px; font-weight:800; padding:5px 12px; border-radius:999px; letter-spacing:.04em; white-space:nowrap; }
+.price-card h3{ font-size:19px; }
+.price-card .from{ margin-top:14px; font-size:11px; letter-spacing:.16em; color:rgba(11,18,32,.45); font-weight:800; }
+.price-card .amount{ font-family:"Playfair Display",Georgia,serif; font-size:42px; color:#B08D3E; line-height:1.05; }
+.price-card .cur{ font-size:12px; color:rgba(11,18,32,.45); font-weight:800; letter-spacing:.14em; }
+.price-card p{ margin-top:12px; color:rgba(11,18,32,.66); font-weight:600; font-size:14.5px; }
+.price-card .btn{ margin-top:auto; padding-top:0; }
+.price-card .btn-wrap{ margin-top:18px; }
+.price-note{ text-align:center; margin-top:18px; color:rgba(11,18,32,.55); font-weight:600; font-size:14px; }
+.price-note a{ color:#B08D3E; font-weight:800; }
+@media (max-width:980px){ .pricing-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .pricing-grid{ grid-template-columns:1fr; } }
+/* corporate form */
+.corp-form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; text-align:left; }
+.corp-form .full{ grid-column:1 / -1; }
+.corp-form label{ display:block; font-size:13.5px; font-weight:800; margin-bottom:7px; }
+.corp-form input, .corp-form select, .corp-form textarea{ width:100%; padding:14px 16px; border:1.5px solid rgba(11,18,32,.16); border-radius:14px; font:inherit; font-size:15px; background:#fff; }
+.corp-form textarea{ min-height:130px; resize:vertical; }
+.corp-form .submit{ grid-column:1 / -1; padding:17px; font-size:16px; letter-spacing:.06em; }
+@media (max-width:640px){ .corp-form{ grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 <header>
@@ -131,25 +172,22 @@ footer{ background:#F2F4F7; }
     </div>
   </div>
 </header>
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="kicker">By the hour limo • flexible luxury transportation</div>
-      <h1>Hourly chauffeur service in Montreal</h1>
-      <p class="lead">Luxury chauffeur service by the hour for business, events, evenings out, private rides, and premium multi-stop transportation in Montreal.</p>
-      <div class="hero-points">
-        <div>Professional chauffeurs</div>
-        <div>Luxury SUVs & Sprinter</div>
-        <div>24/7 reservation support</div>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="booking.html">Book online</a>
-        <a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">WhatsApp</a>
-      </div>
-    </div>
-    <div class="hero-card"><img src="/luxury.jpg" alt="Hourly chauffeur service in Montreal with Cadillac Escalade"/></div>
-  </div>
-</section>
+<section class="page-banner" style="background-image:url('/luxury.jpg')"></section>
+<div class="overlap-wrap"><div class="overlap-card">
+<div class="oc-eyebrow">Flexible Chauffeur Hire</div>
+<h1>Hourly Chauffeur &amp; Full-Day Private Driver Montreal</h1>
+<p class="oc-sub">Your own professional chauffeur and luxury vehicle, by the hour or for the entire day — make as many stops as you like, change plans as you go, anywhere in Montreal.</p>
+<div class="oc-actions">
+<a class="btn btn-primary" href="booking.html?mode=hourly">Book Hourly Chauffeur</a>
+<a class="btn" href="tel:+15142248252">&#128222; +1 (514) 224-8252</a>
+</div>
+<div class="oc-stats">
+<div class="st"><b>$300/2hrs</b><span>Starting Rate</span></div>
+<div class="st"><b>Unlimited</b><span>Stops Included</span></div>
+<div class="st"><b>Professional</b><span>Chauffeurs</span></div>
+<div class="st"><b>24/7</b><span>Availability</span></div>
+</div>
+</div></div>
 <main class="container">
 
 <section>
@@ -157,12 +195,26 @@ footer{ background:#F2F4F7; }
     <h2>Hourly chauffeur service in Montreal for flexible luxury transportation</h2>
     <p class="subtitle">This page targets searches like <strong>hourly chauffeur Montreal</strong>, <strong>by the hour limo Montreal</strong>, and <strong>Montreal chauffeur service</strong>. Hourly service is ideal when you need a vehicle and chauffeur available for multiple stops, uncertain schedules, private events, shopping, dinners, nightlife, business meetings, or a full day of premium transportation.</p>
     <div class="tiles">
-      <div class="tile"><h3>Minimum 3 hours</h3><p>Designed for real chauffeur service, not a simple one-way transfer. Perfect for flexible itineraries.</p></div>
+      <div class="tile"><h3>Packages from 2 hours</h3><p>Choose a 2, 4 or 8-hour package — designed for real chauffeur service, not a simple one-way transfer. Perfect for flexible itineraries.</p></div>
       <div class="tile"><h3>Ideal for events</h3><p>Great for nights out, weddings, corporate meetings, VIP movements, and private city touring.</p></div>
       <div class="tile"><h3>Executive fleet</h3><p>Choose from Escalade, Suburban, Denali, QX60, Tesla, or Sprinter depending on the occasion.</p></div>
     </div>
   </div>
 </section>
+<section>
+  <div class="section-card">
+    <div style="text-align:center"><div class="oc-eyebrow" style="color:#B08D3E;font-weight:800;letter-spacing:.20em;font-size:12px;text-transform:uppercase">Pricing</div>
+    <h2 style="margin-top:10px">Hourly &amp; Full-Day Chauffeur Rates</h2></div>
+    <div class="pricing-grid">
+      <div class="price-card"><h3>2 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$300</div><div class="cur">CAD</div><p>Business meeting, lunch, client visit.</p><p>Short hire with full in-city flexibility.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
+      <div class="price-card"><h3>4 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$600</div><div class="cur">CAD</div><p>Half-day meetings, multiple stops.</p><p>Popular for conference attendance and events.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
+      <div class="price-card popular"><div class="pop-badge">Most Popular</div><h3>8 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$1,100</div><div class="cur">CAD</div><p>Full business day, VIP guest management.</p><p>Your dedicated chauffeur from morning to evening.</p><div class="btn-wrap"><a class="btn btn-primary" href="booking.html?mode=hourly">Online Booking</a></div></div>
+      <div class="price-card"><h3>Custom</h3><div class="from">&nbsp;</div><div class="amount" style="font-size:34px;padding-top:8px">Get Quote</div><p>Multi-day, corporate events, roadshows.</p><p>Bespoke rates for extended or recurring hire.</p><div class="btn-wrap"><a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">Online Booking</a></div></div>
+    </div>
+    <p class="price-note">Package rates for our executive SUV class. Your final rate depends on the vehicle you choose. <a href="index.html#fleet">View fleet &rarr;</a></p>
+  </div>
+</section>
+
 <section>
   <div class="two-col">
     <div class="story-card">
