@@ -3175,6 +3175,23 @@ h1.hero-title{ margin:16px 0 0; }
 /* ===== Drawer scroll lock (iOS-safe) ===== */
 body.nav-open{ overflow:hidden !important; }
 #mobileDrawer{ max-height:calc(100dvh - 84px); overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+
+/* ===== Mobile header fit: balanced spacing, nothing clipped ===== */
+@media (max-width:860px){
+  .site-head .head-row{ gap:8px !important; padding-top:9px; padding-bottom:9px; }
+  .site-head .brand-link{ gap:8px !important; min-width:0; }
+  .site-head .brand-text{ min-width:0; }
+  .site-head .brand-name{ font-size:16.5px !important; }
+  .site-head .logo-mark{ width:36px !important; height:36px !important; font-size:20px !important; }
+  .site-head .menu-toggle{ width:40px !important; height:40px !important; flex:0 0 auto; }
+  .site-head .header-right{ gap:6px !important; }
+  .site-head .lang-switch{ padding:3px !important; gap:2px !important; }
+  .site-head .lang-btn{ padding:5px 9px !important; font-size:12.5px !important; }
+}
+@media (max-width:400px){
+  .site-head .brand-name{ font-size:15px !important; }
+  .site-head .logo-mark{ width:34px !important; height:34px !important; font-size:19px !important; }
+}
 </style>
 </head>
 <body>
