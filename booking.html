@@ -3055,6 +3055,32 @@ footer{ background:#F2F4F7; }
 @media (max-width:940px){ .site-head .brand-name{ display:block; } .site-head .brand-text{ display:block; } }
 
 .site-head .phone-pill{ white-space:nowrap; font-size:14px; }
+
+/* ===== MOBILE ROYALMOUNT PASS ===== */
+.mobile-hero-photo{ display:none !important; }
+.logo-mark{ position:relative; background:linear-gradient(180deg,#ffffff,#FBF6EA); }
+.logo-mark::after{ content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:5px; width:14px; height:2px; border-radius:2px; background:#C5A253; }
+@media (max-width:860px){
+  .head-row{ gap:10px; padding:10px 0; }
+  .site-head .menu-toggle{ display:grid; position:static; margin:0; width:40px; height:40px; flex:0 0 auto; }
+  .site-head .phone-pill, .site-head .book-now{ display:none !important; }
+  .site-head .brand-name{ font-size:17px; white-space:nowrap; }
+  .site-head .brand-link{ gap:9px; min-width:0; }
+  .logo-mark{ width:38px; height:38px; font-size:21px; border-radius:10px; }
+  .logo-mark::after{ bottom:4px; width:11px; }
+  .site-head .header-right{ gap:8px; margin-left:auto; }
+  .lang-switch .lang-btn{ padding:6px 10px; font-size:12.5px; }
+  .hero-inner{ padding:30px 0 42px; gap:22px; }
+  .hero-wrap{ background: linear-gradient(180deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.93) 55%, rgba(255,255,255,.85) 100%), url("/fleet.jpg") center/cover no-repeat !important; }
+  .hero-kicker{ font-size:11px; letter-spacing:.16em; }
+  .hero-title{ font-size:clamp(34px,10vw,44px); }
+  .hero-sub{ font-size:16px; }
+  .hero-left .actions{ display:flex; gap:10px; flex-wrap:nowrap; }
+  .hero-left .actions .btn{ flex:1 1 0; padding:13px 8px; font-size:14px; white-space:nowrap; }
+  .booking-card{ width:100%; }
+  .bk-trust strong{ font-size:12px; }
+  .bk-trust span{ font-size:10.5px; }
+}
 </style>
 
 <style>
@@ -3078,7 +3104,7 @@ footer{ background:#F2F4F7; }
 <button aria-expanded="false" aria-label="Menu" class="menu-toggle icon-pill" id="mobileMenuBtn" type="button"><i></i><i></i><i></i></button>
 <a aria-label="Home" class="brand-link" href="index.html">
 <div class="logo-mark">M</div>
-<div class="brand-text"><div class="brand-name" data-i18n="brand_name">Montreal Limo Service</div><div class="brand-tag">LUXURY CHAUFFEUR &middot; MONTREAL</div></div>
+<div class="brand-text"><div class="brand-name" data-i18n="brand_name">Montreal Limo Service</div><div class="brand-tag">LIMO &amp; CHAUFFEUR SERVICE &middot; MONTREAL</div></div>
 </a>
 <nav class="main-nav">
 <a data-i18n="nav_services" href="services.html">Services</a>
