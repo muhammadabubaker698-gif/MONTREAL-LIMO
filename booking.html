@@ -3146,6 +3146,10 @@ body.nav-open{ overflow:hidden !important; }
   .site-head .brand-name{ font-size:15px !important; }
   .site-head .logo-mark{ width:34px !important; height:34px !important; font-size:19px !important; }
 }
+
+/* ===== Drawer v3: touch-guard scroll block + close button ===== */
+#mobileDrawer{ padding-top:54px; }
+#mobileDrawer .drawer-close{ position:absolute; top:10px; right:10px; width:38px; height:38px; border-radius:12px; border:1px solid rgba(11,18,32,.14); background:#ffffff; color:#111827; font-size:16px; line-height:1; display:grid; place-items:center; cursor:pointer; z-index:3; }
 </style>
 
 <style>
@@ -3190,6 +3194,7 @@ body.nav-open{ overflow:hidden !important; }
 </div>
 </header>
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
+<button class="drawer-close" aria-label="Close menu" type="button">&#10005;</button>
 <a data-i18n="nav_book" href="#booking">Book online</a>
 <a data-i18n="nav_corporate" href="index.html#corporate">Corporate program</a><a data-i18n="nav_fleet" href="index.html#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
@@ -5613,15 +5618,14 @@ function getQcCorridorBounds(){
 
   if (!btn || !drawer || !overlay) return;
 
-  let savedScrollY = 0;
+  const blockScroll = (e) => {
+    if (!drawer.contains(e.target)) e.preventDefault();
+  };
+
   const open = () => {
-    savedScrollY = window.scrollY || window.pageYOffset || 0;
     document.body.classList.add('nav-open');
-    document.body.style.position = 'fixed';
-    document.body.style.top = (-savedScrollY) + 'px';
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
+    document.addEventListener('touchmove', blockScroll, { passive: false });
+    document.addEventListener('wheel', blockScroll, { passive: false });
     btn.setAttribute('aria-expanded', 'true');
     overlay.setAttribute('aria-hidden', 'false');
   };
@@ -5629,15 +5633,14 @@ function getQcCorridorBounds(){
   const close = () => {
     if (!document.body.classList.contains('nav-open')) return;
     document.body.classList.remove('nav-open');
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    window.scrollTo(0, savedScrollY);
+    document.removeEventListener('touchmove', blockScroll);
+    document.removeEventListener('wheel', blockScroll);
     btn.setAttribute('aria-expanded', 'false');
     overlay.setAttribute('aria-hidden', 'true');
   };
+
+  const closeBtn = drawer.querySelector('.drawer-close');
+  if (closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); close(); });
 
   const toggle = () => {
     if (document.body.classList.contains('nav-open')) close();
