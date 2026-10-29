@@ -3020,6 +3020,9 @@ h1.hero-title{ margin:24px 0 0; }
 .float-book{ background:linear-gradient(90deg,#C5A253,#B08D3E); }
 .price{ color:#111827; }
 footer{ background:#F2F4F7; }
+
+.booking-card-title{ font-family:var(--serif); text-align:center; font-size:19px; font-weight:600; letter-spacing:.04em; color:#111827; padding:16px 16px 12px; border-bottom:1px solid #E5E7EB; }
+.booking-card-title::after{ content:""; display:block; width:44px; height:2.5px; margin:8px auto 0; background:linear-gradient(90deg,#C5A253,#B08D3E); border-radius:2px; }
 </style>
 </head>
 <body>
@@ -3045,7 +3048,7 @@ footer{ background:#F2F4F7; }
 <div class="container header-nav">
 <div style="width:42px"></div>
 <div class="links">
-<a data-i18n="nav_book" href="#booking">Book online</a>
+<a data-i18n="nav_book" href="booking.html">Book online</a>
 <a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
@@ -3057,7 +3060,7 @@ footer{ background:#F2F4F7; }
 <div style="width:42px"></div>
 </div>
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
-<a data-i18n="nav_book" href="#booking">Book online</a>
+<a data-i18n="nav_book" href="booking.html">Book online</a>
 <a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
@@ -3088,16 +3091,17 @@ footer{ background:#F2F4F7; }
 <span class="badge" data-i18n="badge_cities">Montreal • Laval • Mont-Tremblant</span>
 </div>
 <div class="actions" style="margin-top:18px;">
-<a class="btn btn-primary" href="#booking">Book online</a>
-<a class="btn" href="airport-transfer-montreal.html">Airport transfers</a>
+<a class="btn btn-primary" href="booking.html">Book Your Transfer</a>
+<a class="btn" href="corporate-limo-montreal.html">Corporate Accounts</a>
 </div>
 </div>
 <aside aria-label="Search booking" class="booking-card" id="booking">
+<div class="booking-card-title">Book Your Transfer</div>
 <div class="tabs">
-<button aria-selected="true" class="tab active" data-i18n="tab_oneway" id="tabOneWay" type="button">One way</button>
-<button aria-selected="false" class="tab" data-i18n="tab_hourly" id="tabHourly" type="button">By the hour (min 3h)</button>
+<button aria-selected="true" class="tab active" data-i18n="tab_oneway" id="tabOneWay" type="button">Point to Point</button>
+<button aria-selected="false" class="tab" data-i18n="tab_hourly" id="tabHourly" type="button">Hourly (min 3h)</button>
 </div>
-<div class="tabhint" data-i18n-html="tab_hint_html">Need a chauffeur for events, shopping or a night out? Choose <b>By the hour</b> (minimum 3 hours).</div>
+<div class="tabhint" data-i18n-html="tab_hint_html">Need a chauffeur for events, shopping or a night out? Choose <b>Hourly</b> (minimum 3 hours).</div>
 <div class="book-body">
 <div aria-hidden="true" class="stepbar">
 <div class="stepdot"><i></i></div>
@@ -3319,8 +3323,8 @@ footer{ background:#F2F4F7; }
 <div class="price">$150 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="escalade" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="escalade" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="escalade" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="escalade" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
@@ -3333,8 +3337,8 @@ footer{ background:#F2F4F7; }
 <div class="price">$125 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="suburban" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="suburban" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="suburban" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="suburban" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
@@ -3347,8 +3351,8 @@ footer{ background:#F2F4F7; }
 <div class="price">$125 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="denali" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="denali" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="denali" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="denali" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
@@ -3361,8 +3365,8 @@ footer{ background:#F2F4F7; }
 <div class="price">$100 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="qx60" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="qx60" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="qx60" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="qx60" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
@@ -3375,8 +3379,8 @@ footer{ background:#F2F4F7; }
 <div class="price">$100 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="tesla" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="tesla" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="tesla" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="tesla" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
@@ -3389,14 +3393,35 @@ footer{ background:#F2F4F7; }
 <div class="price">$299 / <span data-i18n="unit_hour">hour</span></div>
 <div class="min" data-hours="3" data-i18n-html="min_hours_html">3-hour minimum</div>
 <div class="actions actions-reserve">
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="sprinter" href="#booking">Reserve Point A to Point B</a>
-<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="sprinter" href="#booking">Reserve by hour</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_point" data-mode="one_way" data-vehicle="sprinter" href="booking.html">Reserve Point A to Point B</a>
+<a class="btn btn-primary reserve-btn" data-i18n="btn_reserve_hourly" data-mode="hourly" data-vehicle="sprinter" href="booking.html">Reserve by hour</a>
 <a class="btn btn-whatsapp" data-i18n="btn_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </div>
 </div>
 </div>
 </div>
 </section>
+<section class="section reveal" id="corporate-accounts">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="eyebrow" data-i18n="corpacct_eyebrow">Corporate Accounts</div>
+<h2 data-i18n="corpacct_title">Corporate accounts for Montreal businesses</h2>
+<p class="lead" data-i18n="corpacct_sub">Preferred rates, monthly packages and one dedicated contact for your team's travel — executives, clients and airport runs handled under a single account.</p>
+</div>
+</div>
+<div class="grid grid-3">
+<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c1t">Preferred corporate rates</h3><p data-i18n="corpacct_c1d">Volume-based pricing and monthly packages for regular business travel.</p></div></div>
+<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c2t">Detailed invoicing &amp; reporting</h3><p data-i18n="corpacct_c2d">Itemized monthly statements your accounting team will love — every ride, passenger and cost centre in one place.</p></div></div>
+<div class="card"><div class="card-body"><h3 data-i18n="corpacct_c3t">Dedicated contact &amp; priority booking</h3><p data-i18n="corpacct_c3d">A single point of contact who knows your travellers, with priority dispatch for account holders.</p></div></div>
+</div>
+<div class="actions" style="margin-top:18px;">
+<a class="btn btn-primary" href="corporate-limo-montreal.html" data-i18n="corpacct_cta">Open a Corporate Account</a>
+<a class="btn" href="tel:+15142248252">Call +1 (514) 224-8252</a>
+</div>
+</div>
+</section>
+
 
 
 
@@ -4755,7 +4780,7 @@ if (input.value.trim().length >= 2) doSearch();
       e.preventDefault();
       const vehicleId = btn.dataset.vehicle;
       const mode = btn.dataset.mode || "one_way";
-      const url = new URL("index.html", window.location.href);
+      const url = new URL("booking.html", window.location.href);
       url.searchParams.set("vehicle", vehicleId);
       url.searchParams.set("mode", mode);
       url.hash = "booking";
@@ -5538,9 +5563,19 @@ function getQcCorridorBounds(){
       badge_premium: "Premium vehicles",
       badge_cities: "Montreal • Laval • South Shore",
 
-      tab_oneway: "One way",
-      tab_hourly: "By the hour (min 3h)",
-      tab_hint_html: "Need a chauffeur for events, shopping or a night out? Choose <b>By the hour</b> (minimum 3 hours).",
+      corpacct_eyebrow: "Corporate Accounts",
+        corpacct_title: "Corporate accounts for Montreal businesses",
+        corpacct_sub: "Preferred rates, monthly packages and one dedicated contact for your team’s travel — executives, clients and airport runs handled under a single account.",
+        corpacct_c1t: "Preferred corporate rates",
+        corpacct_c1d: "Volume-based pricing and monthly packages for regular business travel.",
+        corpacct_c2t: "Detailed invoicing & reporting",
+        corpacct_c2d: "Itemized monthly statements your accounting team will love — every ride, passenger and cost centre in one place.",
+        corpacct_c3t: "Dedicated contact & priority booking",
+        corpacct_c3d: "A single point of contact who knows your travellers, with priority dispatch for account holders.",
+        corpacct_cta: "Open a Corporate Account",
+        tab_oneway: "Point to Point",
+      tab_hourly: "Hourly (min 3h)",
+      tab_hint_html: "Need a chauffeur for events, shopping or a night out? Choose <b>Hourly</b> (minimum 3 hours).",
       step_1of3: "Step 1 of 3",
 
       ph_from: "From: address, airport, hotel…",
@@ -5676,9 +5711,19 @@ function getQcCorridorBounds(){
       badge_premium: "Véhicules haut de gamme",
       badge_cities: "Montreal • Laval • South Shore",
 
-      tab_oneway: "Aller simple",
-      tab_hourly: "À l’heure (min 1 h)",
-      tab_hint_html: "Besoin d’un chauffeur pour un événement, du magasinage ou une sortie? Choisissez <b>À l’heure</b> (minimum 1 h).",
+      corpacct_eyebrow: "Comptes corporatifs",
+        corpacct_title: "Comptes corporatifs pour les entreprises de Montréal",
+        corpacct_sub: "Tarifs préférentiels, forfaits mensuels et un contact dédié pour les déplacements de votre équipe — dirigeants, clients et transferts aéroport sous un seul compte.",
+        corpacct_c1t: "Tarifs corporatifs préférentiels",
+        corpacct_c1d: "Tarification selon le volume et forfaits mensuels pour les déplacements d’affaires réguliers.",
+        corpacct_c2t: "Facturation détaillée et rapports",
+        corpacct_c2d: "Relevés mensuels détaillés que votre comptabilité appréciera — chaque course, passager et centre de coûts au même endroit.",
+        corpacct_c3t: "Contact dédié et réservation prioritaire",
+        corpacct_c3d: "Un seul point de contact qui connaît vos voyageurs, avec répartition prioritaire pour les titulaires de compte.",
+        corpacct_cta: "Ouvrir un compte corporatif",
+        tab_oneway: "Point à point",
+      tab_hourly: "À l’heure (min 3 h)",
+      tab_hint_html: "Besoin d’un chauffeur pour un événement, du magasinage ou une sortie? Choisissez <b>À l’heure</b> (minimum 3 h).",
       step_1of3: "Étape 1 sur 3",
 
       ph_from: "De : adresse, aéroport, hôtel…",
@@ -5787,7 +5832,7 @@ function getQcCorridorBounds(){
       faq_q1: "Offrez-vous des prises en charge à l’aéroport (YUL) ?",
       faq_a1: "Oui — transferts privés depuis Montréal–Trudeau (YUL). Partagez votre numéro de vol et les détails de ramassage.",
       faq_q2: "Puis-je réserver un service à l’heure à Montréal ?",
-      faq_a2: "Oui — choisissez « À l’heure » (minimum 1 heure). Des minimums par véhicule peuvent s’appliquer.",
+      faq_a2: "Oui — choisissez « À l’heure » (minimum 3 heures). Des minimums par véhicule peuvent s’appliquer.",
       faq_q3: "Offrez-vous un service de limousine à Montréal toute l’année ?",
       faq_a3: "Oui — transferts et service chauffeur à Montréal toute l’année pour affaires, aéroport et événements.",
       faq_q4: "Comment puis-je payer ?",

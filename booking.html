@@ -3061,25 +3061,25 @@ footer{ background:#F2F4F7; }
 <div style="width:42px"></div>
 <div class="links">
 <a data-i18n="nav_book" href="#booking">Book online</a>
-<a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
+<a data-i18n="nav_corporate" href="index.html#corporate">Corporate program</a><a data-i18n="nav_fleet" href="index.html#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
-<a href="#premium-services">Wedding package</a>
+<a href="index.html#premium-services">Wedding package</a>
 <a href="services.html">All services</a>
-<a data-i18n="nav_faq" href="#faq">FAQ</a>
-<a data-i18n="nav_contact" href="#contact">Contact</a>
+<a data-i18n="nav_faq" href="index.html#faq">FAQ</a>
+<a data-i18n="nav_contact" href="index.html#contact">Contact</a>
 </div>
 <div style="width:42px"></div>
 </div>
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
 <a data-i18n="nav_book" href="#booking">Book online</a>
-<a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
+<a data-i18n="nav_corporate" href="index.html#corporate">Corporate program</a><a data-i18n="nav_fleet" href="index.html#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
-<a href="#premium-services">Wedding package</a>
+<a href="index.html#premium-services">Wedding package</a>
 <a href="services.html">All services</a>
-<a data-i18n="nav_faq" href="#faq">FAQ</a>
-<a data-i18n="nav_contact" href="#contact">Contact</a>
+<a data-i18n="nav_faq" href="index.html#faq">FAQ</a>
+<a data-i18n="nav_contact" href="index.html#contact">Contact</a>
 <a href="tel:+15142248252">📞 +1 (514) 224-8252</a>
 <a href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request">✉️ info@montreallimousineservices.ca</a>
 <a href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
@@ -3096,10 +3096,10 @@ footer{ background:#F2F4F7; }
   </div>
 <aside aria-label="Search booking" class="booking-card" id="booking">
 <div class="tabs">
-<button aria-selected="true" class="tab active" data-i18n="tab_oneway" id="tabOneWay" type="button">One way</button>
-<button aria-selected="false" class="tab" data-i18n="tab_hourly" id="tabHourly" type="button">By the hour (min 3h)</button>
+<button aria-selected="true" class="tab active" data-i18n="tab_oneway" id="tabOneWay" type="button">Point to Point</button>
+<button aria-selected="false" class="tab" data-i18n="tab_hourly" id="tabHourly" type="button">Hourly (min 3h)</button>
 </div>
-<div class="tabhint" data-i18n-html="tab_hint_html">Need a chauffeur for events, shopping or a night out? Choose <b>By the hour</b> (minimum 3 hours).</div>
+<div class="tabhint" data-i18n-html="tab_hint_html">Need a chauffeur for events, shopping or a night out? Choose <b>Hourly</b> (minimum 3 hours).</div>
 <div class="book-body">
 <div aria-hidden="true" class="stepbar">
 <div class="stepdot"><i></i></div>
@@ -4339,7 +4339,7 @@ if (input.value.trim().length >= 2) doSearch();
       e.preventDefault();
       const vehicleId = btn.dataset.vehicle;
       const mode = btn.dataset.mode || "one_way";
-      const url = new URL("index.html", window.location.href);
+      const url = new URL("booking.html", window.location.href);
       url.searchParams.set("vehicle", vehicleId);
       url.searchParams.set("mode", mode);
       url.hash = "booking";
@@ -5121,9 +5121,9 @@ function getQcCorridorBounds(){
       badge_premium: "Premium vehicles",
       badge_cities: "Montreal • Laval • South Shore",
 
-      tab_oneway: "One way",
-      tab_hourly: "By the hour (min 3h)",
-      tab_hint_html: "Need a chauffeur for events, shopping or a night out? Choose <b>By the hour</b> (minimum 3 hours).",
+      tab_oneway: "Point to Point",
+      tab_hourly: "Hourly (min 3h)",
+      tab_hint_html: "Need a chauffeur for events, shopping or a night out? Choose <b>Hourly</b> (minimum 3 hours).",
       step_1of3: "Step 1 of 3",
 
       ph_from: "From: address, airport, hotel…",
@@ -5261,9 +5261,9 @@ function getQcCorridorBounds(){
       badge_premium: "Véhicules haut de gamme",
       badge_cities: "Montreal • Laval • South Shore",
 
-      tab_oneway: "Aller simple",
-      tab_hourly: "À l’heure (min 1 h)",
-      tab_hint_html: "Besoin d’un chauffeur pour un événement, du magasinage ou une sortie? Choisissez <b>À l’heure</b> (minimum 1 h).",
+      tab_oneway: "Point à point",
+      tab_hourly: "À l’heure (min 3 h)",
+      tab_hint_html: "Besoin d’un chauffeur pour un événement, du magasinage ou une sortie? Choisissez <b>À l’heure</b> (minimum 3 h).",
       step_1of3: "Étape 1 sur 3",
 
       ph_from: "De : adresse, aéroport, hôtel…",
@@ -5372,7 +5372,7 @@ function getQcCorridorBounds(){
       faq_q1: "Offrez-vous des prises en charge à l’aéroport (YUL) ?",
       faq_a1: "Oui — transferts privés depuis Montréal–Trudeau (YUL). Partagez votre numéro de vol et les détails de ramassage.",
       faq_q2: "Puis-je réserver un service à l’heure à Montréal ?",
-      faq_a2: "Oui — choisissez « À l’heure » (minimum 1 heure). Des minimums par véhicule peuvent s’appliquer.",
+      faq_a2: "Oui — choisissez « À l’heure » (minimum 3 heures). Des minimums par véhicule peuvent s’appliquer.",
       faq_q3: "Offrez-vous un service de limousine à Montréal toute l’année ?",
       faq_a3: "Oui — transferts et service chauffeur à Montréal toute l’année pour affaires, aéroport et événements.",
       faq_q4: "Comment puis-je payer ?",
