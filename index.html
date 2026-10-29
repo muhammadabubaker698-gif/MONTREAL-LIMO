@@ -3171,6 +3171,10 @@ h1.hero-title{ margin:16px 0 0; }
 @media (max-width:600px){ .route-grid{ grid-template-columns:1fr; } }
 
 @media (min-width:761px){ .rev-grid .rev-card:nth-child(3){ grid-column:1 / -1; } }
+
+/* ===== Drawer scroll lock (iOS-safe) ===== */
+body.nav-open{ overflow:hidden !important; }
+#mobileDrawer{ max-height:calc(100dvh - 84px); overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
 </style>
 </head>
 <body>
@@ -6136,14 +6140,28 @@ function getQcCorridorBounds(){
 
   if (!btn || !drawer || !overlay) return;
 
+  let savedScrollY = 0;
   const open = () => {
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
     document.body.classList.add('nav-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-savedScrollY) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     btn.setAttribute('aria-expanded', 'true');
     overlay.setAttribute('aria-hidden', 'false');
   };
 
   const close = () => {
+    if (!document.body.classList.contains('nav-open')) return;
     document.body.classList.remove('nav-open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedScrollY);
     btn.setAttribute('aria-expanded', 'false');
     overlay.setAttribute('aria-hidden', 'true');
   };

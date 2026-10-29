@@ -3125,6 +3125,10 @@ body{ padding-top:0 !important; }
 
 #mobileDrawer a{ display:block; padding:13px 14px; border-radius:14px; background:rgba(11,18,32,.04); border:1px solid rgba(11,18,32,.08); margin-bottom:10px; font-weight:700; color:#111827; text-decoration:none; }
 #mobileDrawer a:last-child{ margin-bottom:0; }
+
+/* ===== Drawer scroll lock (iOS-safe) ===== */
+body.nav-open{ overflow:hidden !important; }
+#mobileDrawer{ max-height:calc(100dvh - 84px); overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
 </style>
 
 <style>
@@ -5592,14 +5596,28 @@ function getQcCorridorBounds(){
 
   if (!btn || !drawer || !overlay) return;
 
+  let savedScrollY = 0;
   const open = () => {
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
     document.body.classList.add('nav-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-savedScrollY) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
     btn.setAttribute('aria-expanded', 'true');
     overlay.setAttribute('aria-hidden', 'false');
   };
 
   const close = () => {
+    if (!document.body.classList.contains('nav-open')) return;
     document.body.classList.remove('nav-open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedScrollY);
     btn.setAttribute('aria-expanded', 'false');
     overlay.setAttribute('aria-hidden', 'true');
   };
