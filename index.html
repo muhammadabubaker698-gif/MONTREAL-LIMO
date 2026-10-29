@@ -3003,6 +3003,21 @@ header{
 <link href="https://maps.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://maps.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;family=Playfair+Display:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+
+<style>
+/* ===== EXECUTIVE THEME — Royalmount style ===== */
+:root{ --gradA:#C5A253; --gradB:#B08D3E; }
+body{ background:#ffffff; }
+section[id], aside[id]{ scroll-margin-top:112px; }
+.hero-title{ font-family:"Playfair Display", ui-serif, Georgia, serif; font-weight:700; letter-spacing:-.2px; }
+h1.hero-title{ margin:24px 0 0; }
+.section > h2{ font-family:"Playfair Display", ui-serif, Georgia, serif; text-align:center; font-size:clamp(28px,3.4vw,40px); font-weight:700; color:#111827; letter-spacing:-.2px; }
+.section > h2::after{ content:""; display:block; width:56px; height:3px; border-radius:2px; background:#C5A253; margin:14px auto 0; }
+.section > .subtitle{ text-align:center; margin-left:auto; margin-right:auto; }
+.btn-primary{ color:#ffffff; box-shadow:0 14px 30px rgba(176,141,62,.35); }
+.price{ color:#111827; }
+footer{ background:#F2F4F7; }
+</style>
 </head>
 <body>
 <header>
@@ -3031,7 +3046,7 @@ header{
 <a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
-<a href="wedding-limo-montreal.html">Wedding package</a>
+<a href="#premium-services">Wedding package</a>
 <a href="services.html">All services</a>
 <a data-i18n="nav_faq" href="#faq">FAQ</a>
 <a data-i18n="nav_contact" href="#contact">Contact</a>
@@ -3043,7 +3058,7 @@ header{
 <a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
-<a href="wedding-limo-montreal.html">Wedding package</a>
+<a href="#premium-services">Wedding package</a>
 <a href="services.html">All services</a>
 <a data-i18n="nav_faq" href="#faq">FAQ</a>
 <a data-i18n="nav_contact" href="#contact">Contact</a>
@@ -3058,7 +3073,7 @@ header{
 <div class="hero-inner container">
 <div class="hero-left">
 <div class="hero-kicker">Montreal limo service • YUL airport • Corporate • Long distance</div>
-<div class="hero-title" data-i18n="hero_title">Montreal limo and private chauffeur service</div>
+<h1 class="hero-title" data-i18n="hero_title">Montreal limo and private chauffeur service</h1>
 <div class="hero-sub" data-i18n="hero_sub">Reliable luxury transportation across Greater Montreal and private transfers to Mont-Tremblant, Quebec City, Ottawa and beyond.</div>
 <div class="mobile-hero-photo">
   <img src="/luxury.jpg" alt="Luxury Cadillac Escalade chauffeur service in Montreal"/>
@@ -3273,7 +3288,7 @@ header{
   <div class="showcase-card">
     <h3>Wedding limo Montreal</h3>
     <p>Elegant luxury transportation for ceremonies, receptions, bridal party movements, and VIP guest arrivals.</p>
-    <a href="wedding-limo-montreal.html">View wedding package</a>
+    <a href="#premium-services">View wedding package</a>
   </div>
   <div class="showcase-card">
     <h3>Corporate limousine service</h3>
