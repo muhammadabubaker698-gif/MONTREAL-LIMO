@@ -166,26 +166,36 @@ html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
   .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
 }
 </style>
+<style>
+/* ===== UNIFIED SITE HEADER ===== */
+.site-head{ position:sticky; top:0; z-index:1000; background:#fff; box-shadow:0 1px 0 #E5E7EB, 0 10px 34px rgba(16,24,40,.05); }
+.site-head .head-row{ display:flex; align-items:center; gap:26px; padding:12px 0; }
+.site-head .brand-link{ display:flex; align-items:center; gap:12px; text-decoration:none; flex:0 0 auto; }
+.site-head .logo-mark{ width:46px; height:46px; border:1.5px solid #C5A253; outline:1px solid rgba(197,162,83,.45); outline-offset:3px; border-radius:12px; display:grid; place-items:center; font-family:"Playfair Display",Georgia,serif; font-size:25px; font-weight:700; color:#111827; background:linear-gradient(180deg,#ffffff,#FBF6EA); position:relative; flex:0 0 auto; }
+.site-head .logo-mark::after{ content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:5px; width:14px; height:2px; border-radius:2px; background:#C5A253; }
+.site-head .brand-name{ font-family:"Playfair Display",Georgia,serif; font-size:21px; font-weight:700; color:#111827; line-height:1.05; white-space:nowrap; }
+.site-head .brand-tag{ font-size:9.5px; letter-spacing:.24em; color:#B08D3E; font-weight:800; margin-top:3px; white-space:nowrap; }
+.site-head .main-nav{ display:flex; gap:27px; flex:1; justify-content:center; }
+.site-head .main-nav a{ font-size:15px; font-weight:600; color:#111827; text-decoration:none; white-space:nowrap; }
+.site-head .main-nav a:hover{ color:#B08D3E; }
+.site-head .header-right{ display:flex; align-items:center; gap:12px; }
+.site-head .phone-pill{ display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid rgba(11,18,32,.12); background:#fff; font-weight:700; color:#111827; text-decoration:none; white-space:nowrap; font-size:14px; }
+.site-head .lang-link{ padding:9px 13px; border-radius:999px; border:1px solid rgba(11,18,32,.12); font-weight:800; font-size:13px; color:#111827; text-decoration:none; background:#fff; }
+.site-head .book-now{ padding:12px 22px; white-space:nowrap; }
+.contact-bar{ display:none !important; }
+@media (max-width:1120px){ .site-head .main-nav{ display:none; } }
+@media (max-width:860px){
+  .site-head .head-row{ gap:10px; padding:10px 0; }
+  .site-head .phone-pill, .site-head .brand-tag{ display:none; }
+  .site-head .brand-name{ font-size:17px; }
+  .site-head .logo-mark{ width:38px; height:38px; font-size:21px; border-radius:10px; }
+  .site-head .book-now{ padding:10px 16px; font-size:14px; }
+  .site-head .header-right{ margin-left:auto; }
+}
+</style>
 </head>
 <body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="../index.html"><div class="logo">ML</div><div>Montreal Limousine Service</div></a>
-    <nav class="links">
-      <a href="../index.html">Accueil</a>
-      <a href="../booking.html">Réserver en ligne</a>
-      <a href="airport-transfer-montreal.html">Aéroport</a>
-      <a href="corporate-limo-montreal.html">Corporatif</a>
-      <a href="hourly-chauffeur-montreal.html">À l'heure</a>
-      <a href="downtown-montreal-limo-service.html">Centre-ville</a>
-    <a href="../corporate-limo-montreal.html">EN</a>
-    </nav>
-    <div class="top-cta">
-      <a class="btn" href="tel:+15142248252">Appeler</a>
-      <a class="btn btn-primary" href="../booking.html">Réserver</a>
-    </div>
-  </div>
-</header>
+<header class="site-head"><div class="container head-row"><a class="brand-link" href="../index.html" aria-label="Home"><div class="logo-mark">M</div><div class="brand-text"><div class="brand-name">Montreal Limo Service</div><div class="brand-tag">LIMO &amp; CHAUFFEUR SERVICE &middot; MONTREAL</div></div></a><nav class="main-nav"><a href="services.html">Services</a><a href="../index.html#fleet">Flotte</a><a href="airport-transfer-montreal.html">Aéroports</a><a href="corporate-limo-montreal.html">Corporatif</a><a href="../index.html#faq">FAQ</a><a href="../index.html#contact">Contact</a></nav><div class="header-right"><a class="top-pill phone-pill" href="tel:+15142248252">&#128222; <strong>+1 (514) 224-8252</strong></a><a class="lang-link" href="../corporate-limo-montreal.html">EN</a><a class="btn btn-primary book-now" href="../booking.html">Réserver</a></div></div></header>
 <section class="page-banner" style="background-image:url('/airport.jpg')"></section>
 <div class="overlap-wrap"><div class="overlap-card">
 <div class="oc-eyebrow">Comptes corporatifs</div>
