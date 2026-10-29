@@ -152,6 +152,21 @@ footer{ background:#F2F4F7; }
 .corp-form .submit{ grid-column:1 / -1; padding:17px; font-size:16px; letter-spacing:.06em; }
 @media (max-width:640px){ .corp-form{ grid-template-columns:1fr; } }
 </style>
+<style>
+/* ===== FLOATING CONTACT ===== */
+.whatsapp-float{ display:none !important; }
+
+.float-contact{ position:fixed; right:18px; bottom:18px; z-index:1200; display:flex; flex-direction:column; gap:10px; }
+.float-contact a{ display:flex; align-items:center; gap:9px; padding:12px 19px; border-radius:999px; font-weight:800; font-size:14.5px; text-decoration:none; box-shadow:0 14px 34px rgba(11,18,32,.22); border:1px solid rgba(11,18,32,.06); font-family:inherit; }
+.float-contact .fc-call{ background:#111827; color:#fff; }
+.float-contact .fc-wa{ background:#25D366; color:#fff; }
+.float-contact .fc-mail{ background:#ffffff; color:#111827; }
+html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
+@media (max-width:860px){
+  .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
+}
+</style>
 </head>
 <body>
 <header>
@@ -182,7 +197,7 @@ footer{ background:#F2F4F7; }
 <a class="btn" href="tel:+15142248252">&#128222; +1 (514) 224-8252</a>
 </div>
 <div class="oc-stats">
-<div class="st"><b>$300/2hrs</b><span>Starting Rate</span></div>
+<div class="st"><b>$450/3hrs</b><span>Starting Rate</span></div>
 <div class="st"><b>Unlimited</b><span>Stops Included</span></div>
 <div class="st"><b>Professional</b><span>Chauffeurs</span></div>
 <div class="st"><b>24/7</b><span>Availability</span></div>
@@ -195,7 +210,7 @@ footer{ background:#F2F4F7; }
     <h2>Hourly chauffeur service in Montreal for flexible luxury transportation</h2>
     <p class="subtitle">This page targets searches like <strong>hourly chauffeur Montreal</strong>, <strong>by the hour limo Montreal</strong>, and <strong>Montreal chauffeur service</strong>. Hourly service is ideal when you need a vehicle and chauffeur available for multiple stops, uncertain schedules, private events, shopping, dinners, nightlife, business meetings, or a full day of premium transportation.</p>
     <div class="tiles">
-      <div class="tile"><h3>Packages from 2 hours</h3><p>Choose a 2, 4 or 8-hour package — designed for real chauffeur service, not a simple one-way transfer. Perfect for flexible itineraries.</p></div>
+      <div class="tile"><h3>Packages from 3 hours</h3><p>Choose a 3, 6 or 8-hour package — designed for real chauffeur service, not a simple one-way transfer. Perfect for flexible itineraries.</p></div>
       <div class="tile"><h3>Ideal for events</h3><p>Great for nights out, weddings, corporate meetings, VIP movements, and private city touring.</p></div>
       <div class="tile"><h3>Executive fleet</h3><p>Choose from Escalade, Suburban, Denali, QX60, Tesla, or Sprinter depending on the occasion.</p></div>
     </div>
@@ -206,8 +221,8 @@ footer{ background:#F2F4F7; }
     <div style="text-align:center"><div class="oc-eyebrow" style="color:#B08D3E;font-weight:800;letter-spacing:.20em;font-size:12px;text-transform:uppercase">Pricing</div>
     <h2 style="margin-top:10px">Hourly &amp; Full-Day Chauffeur Rates</h2></div>
     <div class="pricing-grid">
-      <div class="price-card"><h3>2 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$300</div><div class="cur">CAD</div><p>Business meeting, lunch, client visit.</p><p>Short hire with full in-city flexibility.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
-      <div class="price-card"><h3>4 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$600</div><div class="cur">CAD</div><p>Half-day meetings, multiple stops.</p><p>Popular for conference attendance and events.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
+      <div class="price-card"><h3>3 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$450</div><div class="cur">CAD</div><p>Business meeting, lunch, client visit.</p><p>Our minimum package, with full in-city flexibility.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
+      <div class="price-card"><h3>6 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$850</div><div class="cur">CAD</div><p>Longer days, events, multiple stops.</p><p>Popular for conferences, roadshows and full itineraries.</p><div class="btn-wrap"><a class="btn" href="booking.html?mode=hourly">Online Booking</a></div></div>
       <div class="price-card popular"><div class="pop-badge">Most Popular</div><h3>8 Hours</h3><div class="from">STARTING FROM</div><div class="amount">$1,100</div><div class="cur">CAD</div><p>Full business day, VIP guest management.</p><p>Your dedicated chauffeur from morning to evening.</p><div class="btn-wrap"><a class="btn btn-primary" href="booking.html?mode=hourly">Online Booking</a></div></div>
       <div class="price-card"><h3>Custom</h3><div class="from">&nbsp;</div><div class="amount" style="font-size:34px;padding-top:8px">Get Quote</div><p>Multi-day, corporate events, roadshows.</p><p>Bespoke rates for extended or recurring hire.</p><div class="btn-wrap"><a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">Online Booking</a></div></div>
     </div>
@@ -258,5 +273,11 @@ footer{ background:#F2F4F7; }
 <footer>
   <div class="container">© 2026 Montreal Limousine Service • Luxury chauffeur service in Montreal</div>
 </footer>
+
+<div class="float-contact" aria-label="Quick contact">
+<a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Call</a>
+<a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
+<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request"><span aria-hidden="true">&#9993;&#65038;</span> Email</a>
+</div>
 </body>
 </html>

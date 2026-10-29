@@ -3094,6 +3094,30 @@ footer{ background:#F2F4F7; }
   .bk-trust strong{ font-size:12px; }
   .bk-trust span{ font-size:10.5px; }
 }
+
+/* ===== FINAL MOBILE + STICKY + FLOAT FIX ===== */
+html, body{ overflow-x:clip !important; }
+.site-head{ position:sticky !important; top:0; }
+section[id]{ scroll-margin-top:92px; }
+.site-head .brand-name, .logo-mark{ font-family:"Playfair Display", Georgia, serif !important; }
+.hero-badges{ display:none !important; }
+#drawerOverlay{ background:rgba(15,23,42,.16) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+#mobileDrawer{ background:#ffffff !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+.whatsapp-float{ display:none !important; }
+@media (max-width:860px){
+  .hero-title{ max-width:none !important; font-size:clamp(34px,9.8vw,44px) !important; }
+}
+
+.float-contact{ position:fixed; right:18px; bottom:18px; z-index:1200; display:flex; flex-direction:column; gap:10px; }
+.float-contact a{ display:flex; align-items:center; gap:9px; padding:12px 19px; border-radius:999px; font-weight:800; font-size:14.5px; text-decoration:none; box-shadow:0 14px 34px rgba(11,18,32,.22); border:1px solid rgba(11,18,32,.06); font-family:inherit; }
+.float-contact .fc-call{ background:#111827; color:#fff; }
+.float-contact .fc-wa{ background:#25D366; color:#fff; }
+.float-contact .fc-mail{ background:#ffffff; color:#111827; }
+html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
+@media (max-width:860px){
+  .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
+}
 </style>
 </head>
 <body>
@@ -3142,9 +3166,6 @@ footer{ background:#F2F4F7; }
 <div class="hero-kicker">Montreal Limo Service · YUL Airport · Corporate</div>
 <h1 class="hero-title" data-i18n="hero_title">Montreal limo and private chauffeur service</h1>
 <div class="hero-sub" data-i18n="hero_sub">Reliable luxury transportation across Greater Montreal and private transfers to Mont-Tremblant, Quebec City, Ottawa and beyond.</div>
-<div class="mobile-hero-photo">
-  <img src="/luxury.jpg" alt="Luxury Cadillac Escalade chauffeur service in Montreal"/>
-</div>
 <div class="hero-badges">
 <span class="badge" data-i18n="badge_247">24/7 booking</span>
 <span class="badge" data-i18n="badge_pro">Professional chauffeurs</span>
@@ -6075,5 +6096,11 @@ function getQcCorridorBounds(){
     if (window.innerWidth > 940) close();
   });
 })();
-</script></body>
+</script>
+<div class="float-contact" aria-label="Quick contact">
+<a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Call</a>
+<a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
+<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Booking%20Request"><span aria-hidden="true">&#9993;&#65038;</span> Email</a>
+</div>
+</body>
 </html>

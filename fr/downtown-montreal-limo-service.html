@@ -111,6 +111,21 @@ footer{padding:34px 0 50px;color:var(--muted);text-align:center}
 .hero h1::after{ content:""; display:block; width:56px; height:3px; border-radius:2px; background:#C5A253; margin-top:18px; }
 footer{ background:#F2F4F7; }
 </style>
+<style>
+/* ===== FLOATING CONTACT ===== */
+.whatsapp-float{ display:none !important; }
+
+.float-contact{ position:fixed; right:18px; bottom:18px; z-index:1200; display:flex; flex-direction:column; gap:10px; }
+.float-contact a{ display:flex; align-items:center; gap:9px; padding:12px 19px; border-radius:999px; font-weight:800; font-size:14.5px; text-decoration:none; box-shadow:0 14px 34px rgba(11,18,32,.22); border:1px solid rgba(11,18,32,.06); font-family:inherit; }
+.float-contact .fc-call{ background:#111827; color:#fff; }
+.float-contact .fc-wa{ background:#25D366; color:#fff; }
+.float-contact .fc-mail{ background:#ffffff; color:#111827; }
+html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
+@media (max-width:860px){
+  .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
+}
+</style>
 </head>
 <body>
 <header>
@@ -206,5 +221,11 @@ footer{ background:#F2F4F7; }
 <footer>
   <div class="container">© 2026 Montreal Limousine Service • Service de chauffeur de luxe à Montréal</div>
 </footer>
+
+<div class="float-contact" aria-label="Quick contact">
+<a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Appeler</a>
+<a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
+<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Demande%20de%20r%C3%A9servation"><span aria-hidden="true">&#9993;&#65038;</span> Courriel</a>
+</div>
 </body>
 </html>
