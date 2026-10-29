@@ -3419,12 +3419,12 @@ body.nav-open{ overflow:hidden !important; }
   const BUSINESS_WA = "15142248252";
 
   const LOCAL_RATES = [
-    { id:"escalade", name:"2026 Cadillac Escalade ESV", hourly:150, perKm:0.50, minPrice:150, meta:"Ultra-luxury • VIP airport transfers • ski trips", img:"/escalade.jpg" },
-    { id:"suburban", name:"2025 Chevrolet Suburban", hourly:125, perKm:0.50, minPrice:125, meta:"Spacious • luggage friendly • long rides", img:"/suburban.jpg" },
-    { id:"denali", name:"2026 GMC Yukon Denali", hourly:125, perKm:0.50, minPrice:125, meta:"Premium comfort • smooth ride • executive travel", img:"/denali.jpg" },
-    { id:"qx60", name:"2024 Infiniti QX60", hourly:100, perKm:0.50, minPrice:100, meta:"Comfort + value • airport transfers • city rides", img:"/qx60.jpg" },
-    { id:"tesla", name:"2023 Tesla Model Y", hourly:100, perKm:0.25, minPrice:100, meta:"Quiet • modern • eco-friendly", img:"/tesla.jpg" },
-    { id:"sprinter", name:"Mercedes Sprinter (Group Van)", hourly:299, perKm:0.00, minPrice:299, meta:"Groups • events • ski luggage", img:"/sprinter.jpg" }
+    { id:"escalade", name:"2026 Cadillac Escalade ESV", hourly:150, perKm:0.50, minPrice:150, minTrip:250, meta:"Ultra-luxury • VIP airport transfers • ski trips", img:"/escalade.jpg" },
+    { id:"suburban", name:"2025 Chevrolet Suburban", hourly:125, perKm:0.50, minPrice:125, minTrip:195, meta:"Spacious • luggage friendly • long rides", img:"/suburban.jpg" },
+    { id:"denali", name:"2026 GMC Yukon Denali", hourly:125, perKm:0.50, minPrice:125, minTrip:195, meta:"Premium comfort • smooth ride • executive travel", img:"/denali.jpg" },
+    { id:"qx60", name:"2024 Infiniti QX60", hourly:100, perKm:0.50, minPrice:100, minTrip:150, meta:"Comfort + value • airport transfers • city rides", img:"/qx60.jpg" },
+    { id:"tesla", name:"2023 Tesla Model Y", hourly:100, perKm:0.25, minPrice:100, minTrip:150, meta:"Quiet • modern • eco-friendly", img:"/tesla.jpg" },
+    { id:"sprinter", name:"Mercedes Sprinter (Group Van)", hourly:299, perKm:0.00, minPrice:299, minTrip:450, meta:"Groups • events • ski luggage", img:"/sprinter.jpg" }
   ];
 
   // expose for map pricing script
@@ -3522,7 +3522,13 @@ body.nav-open{ overflow:hidden !important; }
     // suburban and denali use the base price
 
     // Round to nearest $10
-    return Math.round(total / 10) * 10;
+    let finalTotal = Math.round(total / 10) * 10;
+
+    // Per-vehicle minimum trip charge (one-way)
+    const floor = Number(v.minTrip || 0);
+    if (floor && finalTotal < floor) finalTotal = floor;
+
+    return finalTotal;
   }
 
   function buildTimeOptions(stepMinutes = 5, selectId, dateId, leadMinutes = 120){
@@ -3991,9 +3997,11 @@ if (input.value.trim().length >= 2) doSearch();
     const ORDER = ["escalade","suburban","denali","qx60","tesla","sprinter"];
     const list = LOCAL_RATES.map(v=>{
       const total = calcVehicleTotal(v);
+      const isFr = (document.documentElement.getAttribute("lang") || "en").toLowerCase().startsWith("fr");
+      const minApplied = state.mode !== "hourly" && Number(v.minTrip || 0) > 0 && total <= Number(v.minTrip);
       const note = state.mode === "hourly"
         ? `Total ${formatMoney(total)} for ${Math.max(3, Number(state.hours||1))} hours`
-        : (state.transfer === "airport" ? "Airport estimate" : "Point-to-point estimate");
+        : (minApplied ? (isFr ? "Tarif minimum applicable" : "Minimum charge applies") : (state.transfer === "airport" ? "Airport estimate" : "Point-to-point estimate"));
       return { ...v, total, note };
     });
     list.sort((a,b)=>ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
