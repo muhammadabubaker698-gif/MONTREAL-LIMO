@@ -3020,6 +3020,39 @@ h1.hero-title{ margin:24px 0 0; }
 .float-book{ background:linear-gradient(90deg,#C5A253,#B08D3E); }
 .price{ color:#111827; }
 footer{ background:#F2F4F7; }
+
+/* ===== ROYALMOUNT-STYLE CARD + HEADER (v2) ===== */
+.booking-card{ background:rgba(255,255,255,.96); backdrop-filter:blur(16px); border-radius:20px; }
+.booking-card-title{ font-family:Inter,system-ui,sans-serif; font-size:12.5px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#B08D3E; text-align:left; padding:20px 22px 0; border-bottom:none; }
+.booking-card-title::after{ display:none; }
+.booking-card .tabs{ gap:10px; padding:14px 22px 4px; background:transparent; border-bottom:none; }
+.booking-card .tab{ border:1.5px solid #E4E7EC; border-radius:12px; background:#fff; color:#344054; }
+.booking-card .tab.active{ border-color:#C5A253; background:#FBF4E2; color:#7c5f22; }
+.booking-card .tabhint, .booking-card .stepbar{ display:none; }
+.booking-card .book-body{ padding:12px 22px 20px; }
+.bk-label{ display:block; font-size:12.5px; font-weight:700; color:#344054; margin:10px 2px 6px; }
+.bk-trust{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; border-top:1px solid #EAECF0; margin:4px 22px 18px; padding-top:14px; text-align:center; }
+.bk-trust strong{ display:block; font-size:13px; color:#111827; }
+.bk-trust span{ font-size:11.5px; color:#667085; }
+.contact-bar{ display:none !important; }
+.whatsapp-float{ background:#25D366 !important; color:#fff !important; border:none !important; box-shadow:0 12px 30px rgba(18,140,70,.35) !important; }
+/* single-row header */
+.site-head{ position:sticky; top:0; z-index:1000; background:#ffffff; box-shadow:0 1px 0 #E5E7EB, 0 10px 34px rgba(16,24,40,.05); }
+.head-row{ display:flex; align-items:center; gap:26px; padding:12px 0; }
+.site-head .brand-link{ display:flex; align-items:center; gap:12px; }
+.logo-mark{ width:46px; height:46px; border:1.5px solid #C5A253; outline:1px solid rgba(197,162,83,.45); outline-offset:3px; border-radius:12px; display:grid; place-items:center; font-family:var(--serif); font-size:25px; font-weight:700; color:#111827; background:#fff; flex:0 0 auto; }
+.site-head .brand-name{ font-family:var(--serif); font-size:21px; font-weight:700; color:#111827; line-height:1.05; }
+.brand-tag{ font-size:9.5px; letter-spacing:.24em; color:#B08D3E; font-weight:800; margin-top:3px; }
+.main-nav{ display:flex; gap:27px; flex:1; justify-content:center; }
+.main-nav a{ font-size:15px; font-weight:600; color:#111827; white-space:nowrap; }
+.main-nav a:hover{ color:#B08D3E; }
+.site-head .header-right{ display:flex; align-items:center; gap:12px; }
+.site-head .menu-toggle{ display:none; }
+.book-now{ padding:12px 22px; white-space:nowrap; }
+@media (max-width:1120px){ .main-nav{ display:none; } .site-head .menu-toggle{ display:grid; } }
+@media (max-width:680px){ .site-head .phone-pill strong{ display:none; } .brand-tag{ display:none; } .site-head .brand-name{ font-size:18px; } }
+
+@media (max-width:940px){ .site-head .brand-name{ display:block; } .site-head .brand-text{ display:block; } }
 </style>
 
 <style>
@@ -3038,38 +3071,29 @@ footer{ background:#F2F4F7; }
 </style>
 </head>
 <body>
-<header>
-<div class="container header-top">
-<button aria-expanded="false" aria-label="Menu" class="menu-toggle icon-pill" type="button" id="mobileMenuBtn">
-<i></i><i></i><i></i>
-</button>
+<header class="site-head">
+<div class="container head-row">
+<button aria-expanded="false" aria-label="Menu" class="menu-toggle icon-pill" id="mobileMenuBtn" type="button"><i></i><i></i><i></i></button>
 <a aria-label="Home" class="brand-link" href="index.html">
-<div class="logo">ML</div>
-<div class="brand-name" data-i18n="brand_name">Montreal Limousine Service</div>
+<div class="logo-mark">M</div>
+<div class="brand-text"><div class="brand-name" data-i18n="brand_name">Montreal Limo Service</div><div class="brand-tag">LUXURY CHAUFFEUR &middot; MONTREAL</div></div>
 </a>
+<nav class="main-nav">
+<a data-i18n="nav_services" href="services.html">Services</a>
+<a data-i18n="nav_fleet" href="index.html#fleet">Fleet</a>
+<a data-i18n="nav_airports" href="airport-transfer-montreal.html">Airports</a>
+<a data-i18n="nav_corp" href="corporate-limo-montreal.html">Corporate</a>
+<a data-i18n="nav_faq" href="index.html#faq">FAQ</a>
+<a data-i18n="nav_contact" href="index.html#contact">Contact</a>
+</nav>
 <div class="header-right">
-<a class="top-pill" href="tel:+15142248252">📞 <strong>+1 (514) 224-8252</strong></a>
+<a class="top-pill phone-pill" href="tel:+15142248252">📞 <strong>+1 (514) 224-8252</strong></a>
 <div aria-label="Language switcher" class="lang-switch">
 <button aria-pressed="true" class="lang-btn active" data-lang="en" type="button">EN</button>
 <button aria-pressed="false" class="lang-btn" data-lang="fr" type="button">FR</button>
 </div>
-<a class="top-pill whatsapp-top" data-i18n="nav_whatsapp" href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
-<a aria-label="Call" class="top-pill icon-pill call-icon" href="tel:+15142248252">📞</a>
+<a class="btn btn-primary book-now" data-i18n="nav_booknow" href="booking.html">Book Now</a>
 </div>
-</div>
-<div class="container header-nav">
-<div style="width:42px"></div>
-<div class="links">
-<a data-i18n="nav_book" href="#booking">Book online</a>
-<a data-i18n="nav_corporate" href="index.html#corporate">Corporate program</a><a data-i18n="nav_fleet" href="index.html#fleet">Our fleet</a>
-<a data-i18n="nav_services" href="services.html">Services</a>
-<a href="airport-transfer-montreal.html">Airport transfer</a>
-<a href="index.html#premium-services">Wedding package</a>
-<a href="services.html">All services</a>
-<a data-i18n="nav_faq" href="index.html#faq">FAQ</a>
-<a data-i18n="nav_contact" href="index.html#contact">Contact</a>
-</div>
-<div style="width:42px"></div>
 </div>
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
 <a data-i18n="nav_book" href="#booking">Book online</a>
@@ -3085,7 +3109,6 @@ footer{ background:#F2F4F7; }
 <a href="https://wa.me/15142248252" rel="noreferrer" target="_blank">WhatsApp</a>
 </nav>
 </header>
-
 <div aria-hidden="true" class="nav-overlay" id="drawerOverlay"></div>
 
 <main class="booking-page">
@@ -3127,6 +3150,7 @@ footer{ background:#F2F4F7; }
 </div>
 <!-- Pickup -->
 <div class="autocomplete-wrap">
+<label class="bk-label" data-i18n="bk_pickup_label" for="h_pickup">Pickup Location</label>
 <div class="field">
 <svg aria-hidden="true" class="ico" fill="none" viewbox="0 0 24 24">
 <path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2"></path>
@@ -3138,6 +3162,7 @@ footer{ background:#F2F4F7; }
 </div>
 <!-- Dropoff -->
 <div class="autocomplete-wrap" id="heroDropoffWrap">
+<label class="bk-label" data-i18n="bk_dropoff_label" for="h_dropoff">Drop-off Location</label>
 <div class="field">
 <svg aria-hidden="true" class="ico" fill="none" viewbox="0 0 24 24">
 <path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z" stroke="currentColor" stroke-width="2"></path>
@@ -3200,10 +3225,11 @@ footer{ background:#F2F4F7; }
 <div class="ri-badges" id="riBadges"></div>
 </div>
 <div class="note" data-i18n="note_pro">Professional chauffeur • clean premium vehicles.</div>
-<button class="search-btn" data-i18n="btn_choose_vehicle" id="heroSearchBtn" type="submit">Choose vehicle</button>
+<button class="search-btn" data-i18n="btn_choose_vehicle" id="heroSearchBtn" type="submit">Search Transfer</button>
 <div class="alert bad" id="heroAlert"></div>
 </form>
 </div>
+<div class="bk-trust"><div><strong data-i18n="bk_t1">Fixed Pricing</strong><span data-i18n="bk_t1s">No hidden fees</span></div><div><strong data-i18n="bk_t2">24/7 Support</strong><span data-i18n="bk_t2s">We're here</span></div><div><strong data-i18n="bk_t3">Free Waiting</strong><span data-i18n="bk_t3s">60 minutes</span></div></div>
 </aside>
 
   <div class="bp-trust">
@@ -5103,9 +5129,24 @@ function getQcCorridorBounds(){
   // --- Simple i18n (EN/FR) ---
   const I18N = {
     en: {
-      brand_name: "Montreal Limousine Service",
+      brand_name: "Montreal Limo Service",
 
       nav_fleet: "Our fleet",
+        nav_book: "Book online",
+        nav_corporate: "Corporate program",
+        nav_services: "Services",
+        nav_airports: "Airports",
+        nav_corp: "Corporate",
+        nav_booknow: "Book Now",
+        bk_pickup_label: "Pickup Location",
+        bk_dropoff_label: "Drop-off Location",
+        bk_t1: "Fixed Pricing",
+        bk_t1s: "No hidden fees",
+        bk_t2: "24/7 Support",
+        bk_t2s: "We're here",
+        bk_t3: "Free Waiting",
+        bk_t3s: "60 minutes",
+        
       nav_routes: "Destinations",
       nav_faq: "FAQ",
       nav_contact: "Contact",
@@ -5137,7 +5178,7 @@ function getQcCorridorBounds(){
       ri_duration: "Estimated time",
       ri_price: "Starts from",
       note_pro: "Professional chauffeur • clean premium vehicles.",
-      btn_choose_vehicle: "Choose vehicle",
+      btn_choose_vehicle: "Search Transfer",
 
       ov_title_booking: "Montreal Limousine Service • Booking",
       ov_title_checkout: "Montreal Limousine Service • Checkout",
@@ -5243,9 +5284,23 @@ function getQcCorridorBounds(){
     },
 
     fr: {
-      brand_name: "Montreal Limousine Service",
+      brand_name: "Montreal Limo Service",
 
       nav_fleet: "Notre flotte",
+        nav_book: "R\u00e9server en ligne",
+        nav_corporate: "Programme corporatif",
+        nav_services: "Services",
+        nav_corp: "Corporatif",
+        nav_booknow: "R\u00e9server",
+        bk_pickup_label: "Lieu de prise en charge",
+        bk_dropoff_label: "Lieu de d\u00e9pose",
+        bk_t1: "Tarif fixe",
+        bk_t1s: "Aucuns frais cach\u00e9s",
+        bk_t2: "Assistance 24/7",
+        bk_t2s: "Nous sommes l\u00e0",
+        bk_t3: "Attente gratuite",
+        bk_t3s: "60 minutes",
+        
       nav_routes: "Destinations",
       nav_faq: "FAQ",
       nav_contact: "Contact",
@@ -5277,7 +5332,7 @@ function getQcCorridorBounds(){
       ri_duration: "Durée estimée",
       ri_price: "À partir de",
       note_pro: "Chauffeur professionnel • véhicules premium impeccables.",
-      btn_choose_vehicle: "Choisir un véhicule",
+      btn_choose_vehicle: "Rechercher un transfert",
 
       ov_title_booking: "Service de limousine Montréal • Réservation",
       ov_title_checkout: "Service de limousine Montréal • Paiement",
