@@ -111,6 +111,61 @@ footer{padding:34px 0 50px;color:var(--muted);text-align:center}
 .hero h1::after{ content:""; display:block; width:56px; height:3px; border-radius:2px; background:#C5A253; margin-top:18px; }
 footer{ background:#F2F4F7; }
 </style>
+
+<style>
+/* ===== ROYALMOUNT-STYLE BANNER + OVERLAP CARD ===== */
+.page-banner{ height:330px; background-size:cover; background-position:center; }
+.overlap-wrap{ max-width:900px; margin:-118px auto 0; padding:0 18px; position:relative; z-index:3; }
+.overlap-card{ background:#fff; border-radius:24px; box-shadow:0 30px 80px rgba(11,18,32,.16); border:1px solid rgba(11,18,32,.06); padding:42px 36px 36px; text-align:center; }
+.overlap-card .oc-eyebrow{ color:#B08D3E; font-weight:800; letter-spacing:.20em; font-size:12px; text-transform:uppercase; }
+.overlap-card h1{ font-family:"Playfair Display",Georgia,serif; font-size:clamp(30px,4.4vw,50px); line-height:1.08; margin-top:12px; }
+.overlap-card .oc-sub{ margin:16px auto 0; color:rgba(11,18,32,.66); font-weight:600; font-size:17px; max-width:62ch; }
+.overlap-card .oc-actions{ margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; align-items:center; }
+.oc-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; border-top:1px solid rgba(11,18,32,.08); margin-top:28px; padding-top:22px; }
+.oc-stats .st b{ display:block; font-family:"Playfair Display",Georgia,serif; font-size:24px; color:#B08D3E; }
+.oc-stats .st span{ font-size:12.5px; color:rgba(11,18,32,.60); font-weight:700; }
+.oc-points{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.oc-points div{ padding:10px 14px; border-radius:999px; background:rgba(11,18,32,.04); border:1px solid rgba(11,18,32,.08); font-weight:800; font-size:13.5px; }
+@media (max-width:760px){ .oc-stats{ grid-template-columns:repeat(2,1fr); } .page-banner{ height:230px; } .overlap-wrap{ margin-top:-84px; } .overlap-card{ padding:30px 20px 26px; } }
+/* pricing */
+.pricing-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px; }
+.price-card{ background:#fff; border:1px solid rgba(11,18,32,.09); border-radius:22px; padding:26px 20px; text-align:center; box-shadow:0 18px 44px rgba(11,18,32,.07); position:relative; display:flex; flex-direction:column; }
+.price-card.popular{ border:2px solid #C5A253; }
+.price-card .pop-badge{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#C5A253,#B08D3E); color:#fff; font-size:11.5px; font-weight:800; padding:5px 12px; border-radius:999px; letter-spacing:.04em; white-space:nowrap; }
+.price-card h3{ font-size:19px; }
+.price-card .from{ margin-top:14px; font-size:11px; letter-spacing:.16em; color:rgba(11,18,32,.45); font-weight:800; }
+.price-card .amount{ font-family:"Playfair Display",Georgia,serif; font-size:42px; color:#B08D3E; line-height:1.05; }
+.price-card .cur{ font-size:12px; color:rgba(11,18,32,.45); font-weight:800; letter-spacing:.14em; }
+.price-card p{ margin-top:12px; color:rgba(11,18,32,.66); font-weight:600; font-size:14.5px; }
+.price-card .btn{ margin-top:auto; padding-top:0; }
+.price-card .btn-wrap{ margin-top:18px; }
+.price-note{ text-align:center; margin-top:18px; color:rgba(11,18,32,.55); font-weight:600; font-size:14px; }
+.price-note a{ color:#B08D3E; font-weight:800; }
+@media (max-width:980px){ .pricing-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .pricing-grid{ grid-template-columns:1fr; } }
+/* corporate form */
+.corp-form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; text-align:left; }
+.corp-form .full{ grid-column:1 / -1; }
+.corp-form label{ display:block; font-size:13.5px; font-weight:800; margin-bottom:7px; }
+.corp-form input, .corp-form select, .corp-form textarea{ width:100%; padding:14px 16px; border:1.5px solid rgba(11,18,32,.16); border-radius:14px; font:inherit; font-size:15px; background:#fff; }
+.corp-form textarea{ min-height:130px; resize:vertical; }
+.corp-form .submit{ grid-column:1 / -1; padding:17px; font-size:16px; letter-spacing:.06em; }
+@media (max-width:640px){ .corp-form{ grid-template-columns:1fr; } }
+</style>
+<style>
+/* ===== FLOATING CONTACT ===== */
+
+.float-contact{ position:fixed; right:18px; bottom:18px; z-index:1200; display:flex; flex-direction:column; gap:10px; }
+.float-contact a{ display:flex; align-items:center; gap:9px; padding:12px 19px; border-radius:999px; font-weight:800; font-size:14.5px; text-decoration:none; box-shadow:0 14px 34px rgba(11,18,32,.22); border:1px solid rgba(11,18,32,.06); font-family:inherit; }
+.float-contact .fc-call{ background:#111827; color:#fff; }
+.float-contact .fc-wa{ background:#25D366; color:#fff; }
+.float-contact .fc-mail{ background:#ffffff; color:#111827; }
+html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
+@media (max-width:860px){
+  .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
+}
+</style>
 </head>
 <body>
 <header>
@@ -131,25 +186,22 @@ footer{ background:#F2F4F7; }
     </div>
   </div>
 </header>
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="kicker">Limousine à l'heure • transport de luxe flexible</div>
-      <h1>Service de chauffeur à l'heure à Montréal</h1>
-      <p class="lead">Service de chauffeur de luxe à l'heure pour les affaires, les événements, les sorties en soirée, les courses privées et le transport haut de gamme à arrêts multiples à Montréal.</p>
-      <div class="hero-points">
-        <div>Chauffeurs professionnels</div>
-        <div>VUS de luxe et Sprinter</div>
-        <div>Assistance aux réservations 24/7</div>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="../booking.html">Réserver en ligne</a>
-        <a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">WhatsApp</a>
-      </div>
-    </div>
-    <div class="hero-card"><img src="/luxury.jpg" alt="Service de chauffeur à l'heure à Montréal avec Cadillac Escalade"/></div>
-  </div>
-</section>
+<section class="page-banner" style="background-image:url('/luxury.jpg')"></section>
+<div class="overlap-wrap"><div class="overlap-card">
+<div class="oc-eyebrow">Location de chauffeur flexible</div>
+<h1>Chauffeur à l'heure et chauffeur privé pour la journée à Montréal</h1>
+<p class="oc-sub">Votre propre chauffeur professionnel et un véhicule de luxe, à l'heure ou pour la journée entière — faites autant d'arrêts que vous le souhaitez, modifiez vos plans en cours de route, partout à Montréal.</p>
+<div class="oc-actions">
+<a class="btn btn-primary" href="../booking.html?mode=hourly">Réserver un chauffeur à l'heure</a>
+<a class="btn" href="tel:+15142248252">&#128222; +1 (514) 224-8252</a>
+</div>
+<div class="oc-stats">
+<div class="st"><b>$450/3hrs</b><span>Tarif de départ</span></div>
+<div class="st"><b>Illimités</b><span>Arrêts inclus</span></div>
+<div class="st"><b>Professionnels</b><span>Chauffeurs</span></div>
+<div class="st"><b>24/7</b><span>Disponibilité</span></div>
+</div>
+</div></div>
 <main class="container">
 
 <section>
@@ -157,12 +209,26 @@ footer{ background:#F2F4F7; }
     <h2>Service de chauffeur à l'heure à Montréal pour un transport de luxe flexible</h2>
     <p class="subtitle">Cette page cible des recherches comme <strong>chauffeur à l'heure à Montréal</strong>, <strong>limousine à l'heure à Montréal</strong> et <strong>service de chauffeur à Montréal</strong>. Le service à l'heure est idéal lorsque vous avez besoin d'un véhicule et d'un chauffeur disponibles pour plusieurs arrêts, des horaires incertains, des événements privés, du magasinage, des soupers, la vie nocturne, des réunions d'affaires ou une journée complète de transport haut de gamme.</p>
     <div class="tiles">
-      <div class="tile"><h3>Minimum de 3 heures</h3><p>Conçu pour un vrai service de chauffeur, et non un simple transfert aller simple. Parfait pour les itinéraires flexibles.</p></div>
+      <div class="tile"><h3>Forfaits à partir de 3 heures</h3><p>Choisissez un forfait de 3, 6 ou 8 heures — conçu pour un vrai service de chauffeur, et non un simple transfert aller simple. Parfait pour les itinéraires flexibles.</p></div>
       <div class="tile"><h3>Idéal pour les événements</h3><p>Excellent pour les sorties en soirée, les mariages, les réunions corporatives, les déplacements VIP et les visites privées de la ville.</p></div>
       <div class="tile"><h3>Flotte de direction</h3><p>Choisissez parmi Escalade, Suburban, Denali, QX60, Tesla ou Sprinter selon l'occasion.</p></div>
     </div>
   </div>
 </section>
+<section>
+  <div class="section-card">
+    <div style="text-align:center"><div class="oc-eyebrow" style="color:#B08D3E;font-weight:800;letter-spacing:.20em;font-size:12px;text-transform:uppercase">Tarifs</div>
+    <h2 style="margin-top:10px">Tarifs — chauffeur à l'heure et à la journée</h2></div>
+    <div class="pricing-grid">
+      <div class="price-card"><h3>3 heures</h3><div class="from">À PARTIR DE</div><div class="amount">$450</div><div class="cur">CAD</div><p>Réunion d'affaires, dîner, visite chez un client.</p><p>Location de courte durée avec une flexibilité totale en ville.</p><div class="btn-wrap"><a class="btn" href="../booking.html?mode=hourly">Réservation en ligne</a></div></div>
+      <div class="price-card"><h3>6 heures</h3><div class="from">À PARTIR DE</div><div class="amount">$850</div><div class="cur">CAD</div><p>Réunions d'une demi-journée, arrêts multiples.</p><p>Populaire pour les conférences et les événements.</p><div class="btn-wrap"><a class="btn" href="../booking.html?mode=hourly">Réservation en ligne</a></div></div>
+      <div class="price-card popular"><div class="pop-badge">Le plus populaire</div><h3>8 heures</h3><div class="from">À PARTIR DE</div><div class="amount">$1,100</div><div class="cur">CAD</div><p>Journée d'affaires complète, accueil d'invités VIP.</p><p>Votre chauffeur dédié, du matin au soir.</p><div class="btn-wrap"><a class="btn btn-primary" href="../booking.html?mode=hourly">Réservation en ligne</a></div></div>
+      <div class="price-card"><h3>Sur mesure</h3><div class="from">&nbsp;</div><div class="amount" style="font-size:34px;padding-top:8px">Demander un devis</div><p>Plusieurs journées, événements corporatifs, tournées de présentation.</p><p>Tarifs sur mesure pour les locations prolongées ou récurrentes.</p><div class="btn-wrap"><a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">Réservation en ligne</a></div></div>
+    </div>
+    <p class="price-note">Tarifs des forfaits pour notre catégorie de VUS de direction. Le tarif final dépend du véhicule que vous choisissez. <a href="../index.html#fleet">Voir la flotte &rarr;</a></p>
+  </div>
+</section>
+
 <section>
   <div class="two-col">
     <div class="story-card">
@@ -188,7 +254,7 @@ footer{ background:#F2F4F7; }
     <h2>Réservez le service de chauffeur à l'heure</h2>
     <p>Réservez votre service de chauffeur à l'heure à Montréal directement à partir du système de réservation de la page d'accueil.</p>
     <div class="cta-actions">
-      <a class="btn btn-primary" href="../index.html?mode=hourly#booking">Réserver le service à l'heure</a>
+      <a class="btn btn-primary" href="../booking.html?mode=hourly">Réserver le service à l'heure</a>
       <a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">Demander sur WhatsApp</a>
     </div>
   </div>
@@ -206,5 +272,11 @@ footer{ background:#F2F4F7; }
 <footer>
   <div class="container">© 2026 Montreal Limousine Service • Service de chauffeur de luxe à Montréal</div>
 </footer>
+
+<div class="float-contact" aria-label="Contact rapide">
+<a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Appeler</a>
+<a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
+<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Demande%20de%20r%C3%A9servation"><span aria-hidden="true">&#9993;&#65038;</span> Courriel</a>
+</div>
 </body>
 </html>

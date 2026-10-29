@@ -111,6 +111,61 @@ footer{padding:34px 0 50px;color:var(--muted);text-align:center}
 .hero h1::after{ content:""; display:block; width:56px; height:3px; border-radius:2px; background:#C5A253; margin-top:18px; }
 footer{ background:#F2F4F7; }
 </style>
+
+<style>
+/* ===== ROYALMOUNT-STYLE BANNER + OVERLAP CARD ===== */
+.page-banner{ height:330px; background-size:cover; background-position:center; }
+.overlap-wrap{ max-width:900px; margin:-118px auto 0; padding:0 18px; position:relative; z-index:3; }
+.overlap-card{ background:#fff; border-radius:24px; box-shadow:0 30px 80px rgba(11,18,32,.16); border:1px solid rgba(11,18,32,.06); padding:42px 36px 36px; text-align:center; }
+.overlap-card .oc-eyebrow{ color:#B08D3E; font-weight:800; letter-spacing:.20em; font-size:12px; text-transform:uppercase; }
+.overlap-card h1{ font-family:"Playfair Display",Georgia,serif; font-size:clamp(30px,4.4vw,50px); line-height:1.08; margin-top:12px; }
+.overlap-card .oc-sub{ margin:16px auto 0; color:rgba(11,18,32,.66); font-weight:600; font-size:17px; max-width:62ch; }
+.overlap-card .oc-actions{ margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; align-items:center; }
+.oc-stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; border-top:1px solid rgba(11,18,32,.08); margin-top:28px; padding-top:22px; }
+.oc-stats .st b{ display:block; font-family:"Playfair Display",Georgia,serif; font-size:24px; color:#B08D3E; }
+.oc-stats .st span{ font-size:12.5px; color:rgba(11,18,32,.60); font-weight:700; }
+.oc-points{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.oc-points div{ padding:10px 14px; border-radius:999px; background:rgba(11,18,32,.04); border:1px solid rgba(11,18,32,.08); font-weight:800; font-size:13.5px; }
+@media (max-width:760px){ .oc-stats{ grid-template-columns:repeat(2,1fr); } .page-banner{ height:230px; } .overlap-wrap{ margin-top:-84px; } .overlap-card{ padding:30px 20px 26px; } }
+/* pricing */
+.pricing-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px; }
+.price-card{ background:#fff; border:1px solid rgba(11,18,32,.09); border-radius:22px; padding:26px 20px; text-align:center; box-shadow:0 18px 44px rgba(11,18,32,.07); position:relative; display:flex; flex-direction:column; }
+.price-card.popular{ border:2px solid #C5A253; }
+.price-card .pop-badge{ position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,#C5A253,#B08D3E); color:#fff; font-size:11.5px; font-weight:800; padding:5px 12px; border-radius:999px; letter-spacing:.04em; white-space:nowrap; }
+.price-card h3{ font-size:19px; }
+.price-card .from{ margin-top:14px; font-size:11px; letter-spacing:.16em; color:rgba(11,18,32,.45); font-weight:800; }
+.price-card .amount{ font-family:"Playfair Display",Georgia,serif; font-size:42px; color:#B08D3E; line-height:1.05; }
+.price-card .cur{ font-size:12px; color:rgba(11,18,32,.45); font-weight:800; letter-spacing:.14em; }
+.price-card p{ margin-top:12px; color:rgba(11,18,32,.66); font-weight:600; font-size:14.5px; }
+.price-card .btn{ margin-top:auto; padding-top:0; }
+.price-card .btn-wrap{ margin-top:18px; }
+.price-note{ text-align:center; margin-top:18px; color:rgba(11,18,32,.55); font-weight:600; font-size:14px; }
+.price-note a{ color:#B08D3E; font-weight:800; }
+@media (max-width:980px){ .pricing-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .pricing-grid{ grid-template-columns:1fr; } }
+/* corporate form */
+.corp-form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; text-align:left; }
+.corp-form .full{ grid-column:1 / -1; }
+.corp-form label{ display:block; font-size:13.5px; font-weight:800; margin-bottom:7px; }
+.corp-form input, .corp-form select, .corp-form textarea{ width:100%; padding:14px 16px; border:1.5px solid rgba(11,18,32,.16); border-radius:14px; font:inherit; font-size:15px; background:#fff; }
+.corp-form textarea{ min-height:130px; resize:vertical; }
+.corp-form .submit{ grid-column:1 / -1; padding:17px; font-size:16px; letter-spacing:.06em; }
+@media (max-width:640px){ .corp-form{ grid-template-columns:1fr; } }
+</style>
+<style>
+/* ===== FLOATING CONTACT ===== */
+
+.float-contact{ position:fixed; right:18px; bottom:18px; z-index:1200; display:flex; flex-direction:column; gap:10px; }
+.float-contact a{ display:flex; align-items:center; gap:9px; padding:12px 19px; border-radius:999px; font-weight:800; font-size:14.5px; text-decoration:none; box-shadow:0 14px 34px rgba(11,18,32,.22); border:1px solid rgba(11,18,32,.06); font-family:inherit; }
+.float-contact .fc-call{ background:#111827; color:#fff; }
+.float-contact .fc-wa{ background:#25D366; color:#fff; }
+.float-contact .fc-mail{ background:#ffffff; color:#111827; }
+html.overlay-open .float-contact, body.nav-open .float-contact{ display:none; }
+@media (max-width:860px){
+  .float-contact{ flex-direction:row; left:12px; right:12px; bottom:calc(10px + env(safe-area-inset-bottom)); }
+  .float-contact a{ flex:1; justify-content:center; padding:13px 6px; font-size:14px; }
+}
+</style>
 </head>
 <body>
 <header>
@@ -131,25 +186,17 @@ footer{ background:#F2F4F7; }
     </div>
   </div>
 </header>
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="kicker">Transport de direction • voyages d'affaires • clients VIP</div>
-      <h1>Service de limousine corporative à Montréal</h1>
-      <p class="lead">Transport de direction professionnel pour les prises en charge à l'aéroport, les réunions au centre-ville, les déplacements auprès des clients et le service de chauffeur corporatif récurrent partout à Montréal.</p>
-      <div class="hero-points">
-        <div>Chauffeurs professionnels</div>
-        <div>VUS de luxe et Sprinter</div>
-        <div>Assistance aux réservations 24/7</div>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="../booking.html">Réserver en ligne</a>
-        <a class="btn" href="https://wa.me/15142248252" target="_blank" rel="noreferrer">WhatsApp</a>
-      </div>
-    </div>
-    <div class="hero-card"><img src="/airport.jpg" alt="Service de limousine corporative et transport aéroportuaire de direction à Montréal"/></div>
-  </div>
-</section>
+<section class="page-banner" style="background-image:url('/airport.jpg')"></section>
+<div class="overlap-wrap"><div class="overlap-card">
+<div class="oc-eyebrow">Comptes corporatifs</div>
+<h1>Des solutions de transport de direction pour votre entreprise</h1>
+<p class="oc-sub">Tarifs corporatifs préférentiels, facturation mensuelle et contact dédié pour les prises en charge de dirigeants à l'aéroport, les transferts de clients et les réunions au centre-ville, partout à Montréal.</p>
+<div class="oc-actions">
+<a class="btn btn-primary" href="#corporate-form">Ouvrir un compte corporatif</a>
+<a class="btn" href="services.html">Découvrir nos services</a>
+</div>
+<div class="oc-points"><div>Chauffeurs professionnels</div><div>VUS de luxe et Sprinter</div><div>Assistance aux réservations 24/7</div></div>
+</div></div>
 <main class="container">
 
 <section>
@@ -188,11 +235,36 @@ footer{ background:#F2F4F7; }
     <h2>Besoin de transport corporatif à Montréal?</h2>
     <p>Réservez un trajet unique ou contactez-nous pour une solution de transport de direction récurrente.</p>
     <div class="cta-actions">
-      <a class="btn btn-primary" href="../index.html#corporate">Demande corporative</a>
+      <a class="btn btn-primary" href="#corporate-form">Demande corporative</a>
       <a class="btn" href="../booking.html">Réserver un trajet de direction</a>
     </div>
   </div>
 </section>
+<section id="corporate-form">
+  <div class="section-card">
+    <h2>Ouvrir un compte corporatif</h2>
+    <p class="subtitle">Parlez-nous des besoins de déplacement de votre entreprise et nous configurerons votre compte avec des tarifs préférentiels et une facturation mensuelle.</p>
+    <form class="corp-form" id="corpForm">
+      <div class="full"><label for="cf_company">Nom de l'entreprise *</label><input id="cf_company" required placeholder="ex. Votre Entreprise inc."/></div>
+      <div><label for="cf_name">Votre nom *</label><input id="cf_name" required placeholder="Nom complet"/></div>
+      <div><label for="cf_email">Courriel d'affaires *</label><input id="cf_email" type="email" required placeholder="vous@entreprise.com"/></div>
+      <div><label for="cf_phone">Numéro de téléphone</label><input id="cf_phone" placeholder="+1 (514) 000-0000"/></div>
+      <div><label for="cf_trips">Déplacements mensuels (approx.)</label><select id="cf_trips"><option value="">Sélectionner une fourchette</option><option>1–5</option><option>6–15</option><option>16–30</option><option>30+</option></select></div>
+      <div class="full"><label for="cf_msg">Informations supplémentaires</label><textarea id="cf_msg" placeholder="Parlez-nous de vos besoins de transport, de vos trajets, de vos exigences particulières..."></textarea></div>
+      <button class="btn btn-primary submit" type="submit">OUVRIR UN COMPTE CORPORATIF</button>
+    </form>
+  </div>
+</section>
+<script>
+document.getElementById('corpForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var g = function(id){ return (document.getElementById(id).value || '').trim(); };
+  var subject = 'Demande de compte corporatif — ' + g('cf_company');
+  var body = 'Entreprise : ' + g('cf_company') + '\nNom : ' + g('cf_name') + '\nCourriel : ' + g('cf_email') +
+             '\nTéléphone : ' + g('cf_phone') + '\nDéplacements mensuels : ' + g('cf_trips') + '\n\n' + g('cf_msg');
+  window.location.href = 'mailto:info@montreallimousineservices.ca?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+});
+</script>
 <section>
   <h2>FAQ sur le transport corporatif</h2>
   <div class="faq">
@@ -206,5 +278,11 @@ footer{ background:#F2F4F7; }
 <footer>
   <div class="container">© 2026 Montreal Limousine Service • Service de chauffeur de luxe à Montréal</div>
 </footer>
+
+<div class="float-contact" aria-label="Contact rapide">
+<a class="fc-call" href="tel:+15142248252"><span aria-hidden="true">&#128222;</span> Appeler</a>
+<a class="fc-wa" href="https://wa.me/15142248252" target="_blank" rel="noreferrer"><span aria-hidden="true">&#128172;</span> WhatsApp</a>
+<a class="fc-mail" href="mailto:info@montreallimousineservices.ca?subject=Demande%20de%20r%C3%A9servation"><span aria-hidden="true">&#9993;&#65038;</span> Courriel</a>
+</div>
 </body>
 </html>
