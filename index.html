@@ -4312,18 +4312,37 @@ async function fetchGoogleSuggestions(query){
       {
         input: query,
         componentRestrictions: { country: ["ca","us"] },
-        locationBias: getQcCorridorBounds(),
+        // Bias toward Montreal (point + radius from qcBiasOptions) so local
+        // places are returned first. NOTE: do NOT add the old continent-wide
+        // locationBias bounds here — it cancelled out the Montreal bias and
+        // same-name places in Toronto / the US ranked above Montreal ones.
+        // Bias only, never a strict restriction: long-distance destinations
+        // (Toronto, Ottawa, Quebec City, USA) must still appear.
         ...qcBiasOptions()
       },
       (preds, status) => {
         if (status !== google.maps.places.PlacesServiceStatus.OK || !preds) return resolve([]);
-        const items = preds.slice(0, 6).map(p => ({
+        const items = preds.map(p => ({
           main: p.structured_formatting?.main_text || p.description,
           sub: p.structured_formatting?.secondary_text || "",
           value: p.description,
           place_id: p.place_id
         }));
-        resolve(items);
+        // Local-first ordering: Montreal-area matches go to the top of the
+        // list (e.g. "four seasons" -> Four Seasons Montreal before Toronto).
+        const localScore = (it) => {
+          const t = ((it.main || "") + " " + (it.sub || "") + " " + (it.value || "")).toLowerCase();
+          let s = 0;
+          if (t.includes("montréal") || t.includes("montreal")) s += 100;
+          if (t.includes("dorval") || t.includes("laval") || t.includes("longueuil") || t.includes("westmount") ||
+              t.includes("pointe-claire") || t.includes("kirkland") || t.includes("saint-laurent") || t.includes("brossard")) s += 60;
+          if (t.includes("québec") || t.includes("quebec") || t.includes(", qc")) s += 40;
+          if (t.includes("ottawa")) s += 10;
+          if (t.includes("canada")) s += 5;
+          return -s; // sort ascending
+        };
+        items.sort((a, b) => localScore(a) - localScore(b));
+        resolve(items.slice(0, 6));
       }
     );
   });
@@ -5328,65 +5347,12 @@ function wireAutocomplete(){
   if (dropoffInput) dropoffInput.setAttribute('data-which','dropoff');
 if (!pickupInput || !dropoffInput) return;
 
-  const options = {
-    componentRestrictions: { country: ["ca","us"] },
-    bounds: getQcCorridorBounds(),
-    strictBounds: false,
-    fields: ["name", "formatted_address", "geometry"]
-  };
+  // Suggestions are handled ONLY by the site's own dropdown (setupAutocomplete /
+  // fetchGoogleSuggestions). Google's native Autocomplete widget is intentionally
+  // NOT attached to these inputs: attaching it made TWO suggestion lists render
+  // at the same time (the widget's "powered by Google" dropdown on top of the
+  // site's own list). The custom dropdown sets coordinates via pickGooglePlace.
 
-  const pickupAC = new google.maps.places.Autocomplete(pickupInput, options);
-  
-tuneAutocomplete(pickupAC);
-const dropoffAC = new google.maps.places.Autocomplete(dropoffInput, options);
-
-  
-tuneAutocomplete(dropoffAC);
-
-  pickupAC.addListener("place_changed", () => {
-    const p = pickupAC.getPlace();
-    if (!p || !p.geometry) return;
-
-    const lat = p.geometry.location.lat();
-    const lng = p.geometry.location.lng();
-
-    const display = p.name ? (p.formatted_address ? `${p.name}, ${p.formatted_address}` : p.name) : (p.formatted_address || "");
-    if (display) pickupInput.value = display;
-
-    const hLat = document.getElementById("h_pickup_lat");
-    const hLng = document.getElementById("h_pickup_lng");
-    if (hLat) hLat.value = lat;
-    if (hLng) hLng.value = lng;
-
-    // Clear your custom list if present
-    const list = document.getElementById("h_pickup_list");
-    if (list) list.innerHTML = "";
-
-    setMarker("pickup", lat, lng, display);
-    try { updateRouteAndEstimate(); } catch(e) {}
-  });
-
-  dropoffAC.addListener("place_changed", () => {
-    const p = dropoffAC.getPlace();
-    if (!p || !p.geometry) return;
-
-    const lat = p.geometry.location.lat();
-    const lng = p.geometry.location.lng();
-
-    const display = p.name ? (p.formatted_address ? `${p.name}, ${p.formatted_address}` : p.name) : (p.formatted_address || "");
-    if (display) dropoffInput.value = display;
-
-    const hLat = document.getElementById("h_dropoff_lat");
-    const hLng = document.getElementById("h_dropoff_lng");
-    if (hLat) hLat.value = lat;
-    if (hLng) hLng.value = lng;
-
-    const list = document.getElementById("h_dropoff_list");
-    if (list) list.innerHTML = "";
-
-    setMarker("dropoff", lat, lng, display);
-    try { updateRouteAndEstimate(); } catch(e) {}
-  });
   // Re-enable inputs now that Google Places is ready.
   try {
     pickupInput.disabled = false;
