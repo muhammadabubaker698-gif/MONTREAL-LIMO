@@ -77,6 +77,10 @@ module.exports = async function handler(req, res) {
         redirect_url: "https://montreallimoservice.ca/booking.html?payment=done",
         ask_for_shipping_address: false,
         merchant_support_email: "info@montreallimoservice.ca",
+        // Tipping on the Square checkout page: Square presents 15% / 20% / 25%
+        // options (percentages are Square's payment-link tip settings, enabled
+        // per link here). Customers can change or remove the tip.
+        allow_tipping: true,
       },
       pre_populated_data: { buyer_email: email },
       payment_note: note,
