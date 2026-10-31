@@ -19,8 +19,16 @@
 //   RESEND_FROM           Sender (default uses the Resend-verified Tremblant domain)
 //   SQUARE_ENV            "sandbox" to use the sandbox API, anything else = production
 
-const NOTIFY_TO = process.env.BOOKING_NOTIFY_EMAIL || "info@montreallimoservice.ca";
-const EMAIL_FROM = process.env.RESEND_FROM || "Montreal Limo Bookings <bookings@monttremblantlimoservices.com>";
+// Env values are trimmed: a pasted secret can carry stray spaces or return
+// characters (Vercel warns about them in the dashboard), which would
+// otherwise silently break API authentication.
+function env(name) {
+  const v = process.env[name];
+  return typeof v === "string" ? v.trim() : v;
+}
+
+const NOTIFY_TO = env("BOOKING_NOTIFY_EMAIL") || "info@montreallimoservice.ca";
+const EMAIL_FROM = env("RESEND_FROM") || "Montreal Limo Bookings <bookings@monttremblantlimoservices.com>";
 
 function esc(s) {
   return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -34,10 +42,10 @@ function money(m) {
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ ok: false, error: "Method not allowed" });
 
-  const token = process.env.SQUARE_ACCESS_TOKEN;
+  const token = env("SQUARE_ACCESS_TOKEN");
   if (!token) return res.status(503).json({ ok: false, error: "Square is not configured." });
 
-  const base = process.env.SQUARE_ENV === "sandbox"
+  const base = env("SQUARE_ENV") === "sandbox"
     ? "https://connect.squareupsandbox.com"
     : "https://connect.squareup.com";
   const headers = {
@@ -75,7 +83,8 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true, ignored: "already emailed" });
     }
 
-    if (!process.env.RESEND_API_KEY) {
+    const resendKey = env("RESEND_API_KEY");
+    if (!resendKey) {
       // 503 so Square retries later — if the key is added within Square's
       // retry window, the retried delivery will send the booking email.
       console.error("RESEND_API_KEY missing — cannot email booking " + payment.id);
@@ -122,7 +131,7 @@ module.exports = async function handler(req, res) {
     const er = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + process.env.RESEND_API_KEY,
+        "Authorization": "Bearer " + resendKey,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
