@@ -130,7 +130,7 @@
       "name": "How do I pay for my Montreal limo booking?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "After you submit your request, we confirm availability and send a secure Stripe payment link."
+        "text": "After you submit your request, we confirm availability and send a secure Square payment link."
       }
     }
   ]
@@ -3444,7 +3444,7 @@ body.nav-open{ overflow:hidden !important; }
 <div class="flow-steps"><span data-i18n="chk_step_search">x</span><span>›</span><span data-i18n="chk_step_class">x</span><span>›</span><span class="on" data-i18n="chk_step_checkout">x</span></div>
 <div class="summary-pill" id="checkoutSummary"></div>
 <div class="flow-h1" data-i18n="ov_your_details">Your details</div>
-<div class="flow-sub" data-i18n-html="ov_details_sub_html">Enter your details. We will email you a “request received” confirmation, then you can pay securely via Stripe.</div>
+<div class="flow-sub" data-i18n-html="ov_details_sub_html">Enter your details and send your booking request. We confirm availability, then send you a secure Square payment link for your trip.</div>
 <label data-i18n="lbl_name" for="c_name">Name</label>
 <input data-i18n-placeholder="ph_name" id="c_name" placeholder="Your name"/>
 <label data-i18n="lbl_phone" for="c_phone">Phone</label>
@@ -3472,7 +3472,7 @@ body.nav-open{ overflow:hidden !important; }
 </div>
 <div class="flow-actions" style="margin-top:14px;">
 <button class="btn" data-i18n="btn_back" onclick="backToVehicles()" type="button">Back</button>
-<button class="btn btn-primary" data-i18n="btn_pay_stripe" onclick="startStripeCheckoutFromOverlay()" type="button">Pay with Stripe</button>
+<button class="btn btn-primary" data-i18n="btn_send_request" onclick="sendBookingRequestFromOverlay()" type="button">Send booking request</button>
 <button class="btn" data-i18n="btn_whatsapp" onclick="sendWhatsAppFromOverlay()" type="button">WhatsApp</button>
 </div>
 <div class="tinyhint" id="checkoutStatus" style="margin-top:10px;"></div>
@@ -3853,7 +3853,7 @@ body.nav-open{ overflow:hidden !important; }
 </details>
 <details class="faq-item">
 <summary data-i18n="faq_q4">How do I pay for my Montreal limo booking?</summary>
-<div class="faq-a" data-i18n="faq_a4">After you submit your request, we confirm availability and send a secure Stripe payment link.</div>
+<div class="faq-a" data-i18n="faq_a4">After you submit your request, we confirm availability and send a secure Square payment link.</div>
 </details>
 </div>
 </section>
@@ -4804,7 +4804,7 @@ if (input.value.trim().length >= 2) doSearch();
 
   function buildWhatsAppMessage(payload){
     const lines = [];
-    lines.push("Booking Request - Montreal Limousine Service");
+    lines.push("Booking Request - Montreal Limo Services");
     lines.push(`Name: ${payload.name || ""}`);
     if (payload.phone) lines.push(`Phone: ${payload.phone}`);
     lines.push(`Date: ${payload.date}`);
@@ -4855,7 +4855,7 @@ if (input.value.trim().length >= 2) doSearch();
     return (pc === "US" || dc === "US") ? "USD" : "CAD";
   }
 
-  async function startStripeCheckoutFromOverlay(){
+  function sendBookingRequestFromOverlay(){
     const statusEl = $("checkoutStatus");
     statusEl.textContent = "";
 
@@ -4879,107 +4879,39 @@ if (input.value.trim().length >= 2) doSearch();
     }
 
     const phone = val("c_phone");
+    const notes = val("c_notes");
+    const triptype = (state.mode === "hourly") ? "Hourly" : (state.transfer === "airport" ? "Airport transfer" : "Point-to-point");
 
     // Hourly: minimum 3 hours
     const hoursNum = Math.max(3, Number(state.hours || 1));
     const currency = getTripCurrency();
     const taxes = getTaxBreakdown(chosen.total);
-    const checkoutTotalRounded = Number(taxes.total) || 0;
     const prefix = (currency === "USD") ? "US$" : "CA$";
+    const estimateText = (state.mode === "hourly")
+      ? `Subtotal ${prefix}${taxes.roundedBase.toFixed(0)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${taxes.total.toFixed(2)} for ${hoursNum} hours`
+      : `Subtotal ${prefix}${taxes.roundedBase.toFixed(0)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${taxes.total.toFixed(2)} (${chosen.note})`;
 
-    // Build database booking payload (for /api/bookings)
-    const dbBooking = {
-      mode: (state.mode === "hourly") ? "hourly" : "one_way",
-      pickup_text: state.pickup || "",
-      dropoff_text: (state.mode === "hourly") ? null : (state.dropoff || ""),
-      pickup_lat: Number(val("h_pickup_lat") || 0) || null,
-      pickup_lng: Number(val("h_pickup_lng") || 0) || null,
-      dropoff_lat: Number(val("h_dropoff_lat") || 0) || null,
-      dropoff_lng: Number(val("h_dropoff_lng") || 0) || null,
-      pickup_airport: val("h_pickup_airport") || null,
-      dropoff_airport: val("h_dropoff_airport") || null,
+    // Compose the booking request email. Payment follows by secure Square link once we confirm availability.
+    const lines = [];
+    lines.push("Booking Request - Montreal Limo Services");
+    lines.push(`Name: ${name}`);
+    lines.push(`Email: ${email}`);
+    if (phone) lines.push(`Phone: ${phone}`);
+    lines.push(`Date: ${state.date}`);
+    lines.push(`Time: ${state.time}`);
+    lines.push(`Pickup: ${state.pickup}`);
+    lines.push(`Drop-off: ${(state.mode === "hourly") ? "Montreal service area" : state.dropoff}`);
+    lines.push(`Trip type: ${triptype}`);
+    lines.push(`Vehicle: ${chosen.name}`);
+    const pax = val("c_passengers"); if (pax) lines.push(`Passengers: ${pax}`);
+    const lug = val("c_luggage"); if (lug) lines.push(`Luggage: ${lug}`);
+    lines.push(`Estimate: ${estimateText}`);
+    if (notes) lines.push(`Notes: ${notes}`);
 
-      pickup_datetime: new Date(`${state.date}T${state.time}:00`).toISOString(),
-      hours: (state.mode === "hourly") ? hoursNum : null,
-
-      distance_m: Number(val("h_distance_m") || 0) || null,
-      duration_s: Number(val("h_duration_s") || 0) || null,
-
-      currency: currency,
-      vehicle_key: chosen.id,
-      price_estimate: Number(getTaxBreakdown(chosen.total).total) || 0,
-
-      customer_name: name,
-      customer_email: email,
-      customer_phone: phone || null,
-      passengers: Number(val("c_passengers") || 0) || null,
-      luggage: Number(val("c_luggage") || 0) || null,
-      notes: val("c_notes") || null
-    };
-
-    // Build Stripe checkout payload (kept compatible with your existing endpoint)
-    const checkoutBooking = {
-      booking_id: null, // will be filled after DB insert
-      name: name,
-      email: email,
-      phone: phone,
-      currency: currency,
-      date: state.date,
-      time: state.time,
-      pickup: state.pickup,
-      dropoff: (state.mode === "hourly") ? "Montreal service area" : state.dropoff,
-      triptype: (state.mode === "hourly") ? "hourly" : (state.transfer === "airport" ? "airport" : "point"),
-      vehicle: chosen.name,
-      vehicle_id: chosen.id,
-      hours: String(hoursNum),
-      roundtrip: "no",
-      notes: val("c_notes"),
-      estimate_text: (state.mode === "hourly")
-        ? `Subtotal ${formatMoney(chosen.total, currency)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${checkoutTotalRounded.toFixed(2)} for ${hoursNum} hour${hoursNum>1?"s":""}`
-        : `Subtotal ${formatMoney(chosen.total, currency)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${checkoutTotalRounded.toFixed(2)} (${chosen.note})`,
-      estimate_total: checkoutTotalRounded,
-      estimate_total_cad: checkoutTotalRounded,
-      pay_option: "full",
-      pay_now: checkoutTotalRounded,
-      pay_now_cad: checkoutTotalRounded
-    };
-
-    try{
-      statusEl.textContent = "Saving your booking…";
-
-      // 1) Save booking + send emails
-      const saveRes = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type":"application/json" },
-        body: JSON.stringify(dbBooking)
-      });
-      const saveData = await saveRes.json().catch(()=> ({}));
-      if (!saveRes.ok || !saveData?.ok) throw new Error(saveData?.error || "Unable to save booking.");
-      checkoutBooking.booking_id = saveData.id;
-
-      // 2) Start Stripe checkout (if endpoint exists)
-      statusEl.textContent = "Starting secure checkout…";
-      const res = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type":"application/json" },
-        body: JSON.stringify(checkoutBooking)
-      });
-
-      const data = await res.json().catch(()=> ({}));
-      if (!res.ok) {
-        // If Stripe endpoint isn't configured yet, show success message with booking ID
-        statusEl.textContent = `Booking saved (ID: ${checkoutBooking.booking_id}). Payment setup is pending.`;
-        alert(`Booking saved! Your booking ID is ${checkoutBooking.booking_id}. We'll contact you to confirm and take payment.`);
-        return;
-      }
-      if (!data?.url) throw new Error("Missing checkout URL from server.");
-      window.location.href = data.url;
-
-    }catch(err){
-      console.error(err);
-      statusEl.textContent = "Checkout error: " + (err.message || "Unknown error");
-      alert("Checkout error: " + (err.message || "Unknown error"));
-    }
+    const subject = encodeURIComponent(`Booking request - ${state.date} - ${chosen.name}`);
+    const body = encodeURIComponent(lines.join("\n"));
+    statusEl.textContent = "Opening your email app to send the request. We confirm availability, then send your secure Square payment link.";
+    window.location.href = `mailto:info@montreallimoservice.ca?subject=${subject}&body=${body}`;
   }
 
   function setHeroSearchLoading(isLoading){
@@ -5785,7 +5717,7 @@ function getQcCorridorBounds(){
       btn_continue: "Continue",
 
       ov_your_details: "Your details",
-      ov_details_sub_html: "Enter your details. We will email you a “request received” confirmation, then you can pay securely via Stripe.",
+      ov_details_sub_html: "Enter your details and send your booking request. We confirm availability, then send you a secure Square payment link for your trip.",
       lbl_name: "Name",
       lbl_phone: "Phone",
       lbl_email: "Email",
@@ -5801,7 +5733,7 @@ function getQcCorridorBounds(){
       ph_message: "Your message" ,
       lbl_total_est: "Total estimate",
       btn_back: "Back",
-      btn_pay_stripe: "Pay with Stripe",
+      btn_send_request: "Send booking request",
       btn_whatsapp: "WhatsApp",
       btn_close: "Close",
 
@@ -5972,7 +5904,7 @@ function getQcCorridorBounds(){
       btn_continue: "Continuer",
 
       ov_your_details: "Vos coordonnées",
-      ov_details_sub_html: "Entrez vos informations. Nous vous enverrons un courriel de confirmation « demande reçue », puis vous pourrez payer en toute sécurité via Stripe.",
+      ov_details_sub_html: "Entrez vos informations et envoyez votre demande. Nous confirmons la disponibilité, puis nous vous envoyons un lien de paiement Square sécurisé pour votre trajet.",
       lbl_name: "Nom",
       lbl_phone: "Téléphone",
       lbl_email: "Courriel",
@@ -5988,7 +5920,7 @@ function getQcCorridorBounds(){
       ph_message: "Votre message" ,
       lbl_total_est: "Estimation totale",
       btn_back: "Retour",
-      btn_pay_stripe: "Payer avec Stripe",
+      btn_send_request: "Envoyer ma demande",
       btn_whatsapp: "WhatsApp",
       btn_close: "Fermer",
 
@@ -6079,7 +6011,7 @@ function getQcCorridorBounds(){
       faq_q3: "Offrez-vous un service de limousine à Montréal toute l’année ?",
       faq_a3: "Oui — transferts et service chauffeur à Montréal toute l’année pour affaires, aéroport et événements.",
       faq_q4: "Comment puis-je payer ?",
-      faq_a4: "Après votre demande, nous confirmons la disponibilité et envoyons un lien de paiement sécurisé Stripe."
+      faq_a4: "Après votre demande, nous confirmons la disponibilité et envoyons un lien de paiement Square sécurisé."
     }
   };
 
