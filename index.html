@@ -130,7 +130,7 @@
       "name": "How do I pay for my Montreal limo booking?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "After you submit your request, we confirm availability and send a secure Square payment link."
+        "text": "You pay securely online with Square right when you book — card, Apple Pay and Google Pay accepted."
       }
     }
   ]
@@ -3444,7 +3444,7 @@ body.nav-open{ overflow:hidden !important; }
 <div class="flow-steps"><span data-i18n="chk_step_search">x</span><span>›</span><span data-i18n="chk_step_class">x</span><span>›</span><span class="on" data-i18n="chk_step_checkout">x</span></div>
 <div class="summary-pill" id="checkoutSummary"></div>
 <div class="flow-h1" data-i18n="ov_your_details">Your details</div>
-<div class="flow-sub" data-i18n-html="ov_details_sub_html">Enter your details and send your booking request. We confirm availability, then send you a secure Square payment link for your trip.</div>
+<div class="flow-sub" data-i18n-html="ov_details_sub_html">Enter your details, then pay securely online with Square — card, Apple Pay and Google Pay accepted.</div>
 <label data-i18n="lbl_name" for="c_name">Name</label>
 <input data-i18n-placeholder="ph_name" id="c_name" placeholder="Your name"/>
 <label data-i18n="lbl_phone" for="c_phone">Phone</label>
@@ -3472,7 +3472,7 @@ body.nav-open{ overflow:hidden !important; }
 </div>
 <div class="flow-actions" style="margin-top:14px;">
 <button class="btn" data-i18n="btn_back" onclick="backToVehicles()" type="button">Back</button>
-<button class="btn btn-primary" data-i18n="btn_send_request" onclick="sendBookingRequestFromOverlay()" type="button">Send booking request</button>
+<button class="btn btn-primary" data-i18n="btn_send_request" onclick="startSquareCheckoutFromOverlay()" type="button">Pay with Square</button>
 <button class="btn" data-i18n="btn_whatsapp" onclick="sendWhatsAppFromOverlay()" type="button">WhatsApp</button>
 </div>
 <div class="tinyhint" id="checkoutStatus" style="margin-top:10px;"></div>
@@ -3853,7 +3853,7 @@ body.nav-open{ overflow:hidden !important; }
 </details>
 <details class="faq-item">
 <summary data-i18n="faq_q4">How do I pay for my Montreal limo booking?</summary>
-<div class="faq-a" data-i18n="faq_a4">After you submit your request, we confirm availability and send a secure Square payment link.</div>
+<div class="faq-a" data-i18n="faq_a4">You pay securely online with Square right when you book — card, Apple Pay and Google Pay accepted.</div>
 </details>
 </div>
 </section>
@@ -4855,7 +4855,71 @@ if (input.value.trim().length >= 2) doSearch();
     return (pc === "US" || dc === "US") ? "USD" : "CAD";
   }
 
-  function sendBookingRequestFromOverlay(){
+  const SQUARE_CHECKOUT_API = "https://montreal-limo.vercel.app/api/create-square-checkout";
+
+  async function startSquareCheckoutFromOverlay(){
+    const statusEl = $("checkoutStatus");
+    statusEl.textContent = "";
+
+    const chosen = getChosenVehicle();
+    if (!chosen){
+      statusEl.textContent = "Please choose a vehicle first.";
+      return;
+    }
+
+    const name = val("c_name");
+    if (!name){
+      statusEl.textContent = "Please enter your name.";
+      return;
+    }
+
+    const email = val("c_email");
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
+    if (!emailOk){
+      statusEl.textContent = "Please enter a valid email address.";
+      return;
+    }
+
+    const hoursNum = Math.max(3, Number(state.hours || 1));
+    const currency = getTripCurrency();
+    const taxes = getTaxBreakdown(chosen.total);
+    const prefix = (currency === "USD") ? "US$" : "CA$";
+    const estimateText = (state.mode === "hourly")
+      ? `Subtotal ${prefix}${taxes.roundedBase.toFixed(0)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${taxes.total.toFixed(2)} for ${hoursNum} hours`
+      : `Subtotal ${prefix}${taxes.roundedBase.toFixed(0)} | GST ${prefix}${taxes.gst.toFixed(2)} | QST ${prefix}${taxes.qst.toFixed(2)} | Total ${prefix}${taxes.total.toFixed(2)} (${chosen.note})`;
+
+    statusEl.textContent = "Taking you to secure Square checkout…";
+    try {
+      const res = await fetch(SQUARE_CHECKOUT_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount_cents: Math.round(taxes.total * 100),
+          currency: currency,
+          name: name,
+          email: email,
+          phone: val("c_phone"),
+          date: state.date,
+          time: state.time,
+          pickup: state.pickup,
+          dropoff: (state.mode === "hourly") ? "Montreal service area" : state.dropoff,
+          triptype: (state.mode === "hourly") ? "Hourly" : (state.transfer === "airport" ? "Airport transfer" : "Point-to-point"),
+          vehicle: chosen.name,
+          estimate_text: estimateText,
+          notes: val("c_notes")
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data && data.url) { window.location.href = data.url; return; }
+      throw new Error((data && data.error) || "Checkout unavailable");
+    } catch (err) {
+      console.error("Square checkout failed, falling back to email request:", err);
+      statusEl.textContent = "Online payment is unavailable at the moment — opening your email app to send the booking request instead.";
+      setTimeout(sendBookingRequestViaEmail, 600);
+    }
+  }
+
+  function sendBookingRequestViaEmail(){
     const statusEl = $("checkoutStatus");
     statusEl.textContent = "";
 
@@ -5717,7 +5781,7 @@ function getQcCorridorBounds(){
       btn_continue: "Continue",
 
       ov_your_details: "Your details",
-      ov_details_sub_html: "Enter your details and send your booking request. We confirm availability, then send you a secure Square payment link for your trip.",
+      ov_details_sub_html: "Enter your details, then pay securely online with Square — card, Apple Pay and Google Pay accepted.",
       lbl_name: "Name",
       lbl_phone: "Phone",
       lbl_email: "Email",
@@ -5733,7 +5797,7 @@ function getQcCorridorBounds(){
       ph_message: "Your message" ,
       lbl_total_est: "Total estimate",
       btn_back: "Back",
-      btn_send_request: "Send booking request",
+      btn_send_request: "Pay with Square",
       btn_whatsapp: "WhatsApp",
       btn_close: "Close",
 
@@ -5904,7 +5968,7 @@ function getQcCorridorBounds(){
       btn_continue: "Continuer",
 
       ov_your_details: "Vos coordonnées",
-      ov_details_sub_html: "Entrez vos informations et envoyez votre demande. Nous confirmons la disponibilité, puis nous vous envoyons un lien de paiement Square sécurisé pour votre trajet.",
+      ov_details_sub_html: "Entrez vos informations, puis payez en ligne en toute sécurité avec Square — carte, Apple Pay et Google Pay acceptés.",
       lbl_name: "Nom",
       lbl_phone: "Téléphone",
       lbl_email: "Courriel",
@@ -5920,7 +5984,7 @@ function getQcCorridorBounds(){
       ph_message: "Votre message" ,
       lbl_total_est: "Estimation totale",
       btn_back: "Retour",
-      btn_send_request: "Envoyer ma demande",
+      btn_send_request: "Payer avec Square",
       btn_whatsapp: "WhatsApp",
       btn_close: "Fermer",
 
@@ -6011,7 +6075,7 @@ function getQcCorridorBounds(){
       faq_q3: "Offrez-vous un service de limousine à Montréal toute l’année ?",
       faq_a3: "Oui — transferts et service chauffeur à Montréal toute l’année pour affaires, aéroport et événements.",
       faq_q4: "Comment puis-je payer ?",
-      faq_a4: "Après votre demande, nous confirmons la disponibilité et envoyons un lien de paiement Square sécurisé."
+      faq_a4: "Vous payez en ligne en toute sécurité avec Square dès la réservation — carte, Apple Pay et Google Pay acceptés."
     }
   };
 
