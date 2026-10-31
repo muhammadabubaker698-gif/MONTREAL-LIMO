@@ -3556,6 +3556,10 @@ body.nav-open{ overflow:hidden !important; }
     if (vehicleId === "qx60") total *= 0.80;
     if (vehicleId === "suburban" || vehicleId === "denali") total *= 0.90;
 
+    // Extra -20% on very long trips: when the drive there and back totals
+    // more than 9 hours (one-way longer than 4h30), Bakar gives 20% more off.
+    if (minutes * 2 > 540) total *= 0.80;
+
     // Round to nearest $10
     let finalTotal = Math.round(total / 10) * 10;
 
