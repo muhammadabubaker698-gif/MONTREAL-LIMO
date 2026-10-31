@@ -4954,7 +4954,8 @@ if (input.value.trim().length >= 2) doSearch();
           triptype: (state.mode === "hourly") ? "Hourly" : (state.transfer === "airport" ? "Airport transfer" : "Point-to-point"),
           vehicle: chosen.name,
           estimate_text: estimateText,
-          notes: val("c_notes")
+          notes: val("c_notes"),
+          lang: (document.documentElement.getAttribute("lang") || "en")
         })
       });
       const data = await res.json().catch(() => ({}));

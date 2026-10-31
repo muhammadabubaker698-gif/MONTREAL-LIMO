@@ -47,6 +47,7 @@ module.exports = async function handler(req, res) {
     }
 
     const vehicle = String(b.vehicle || "Limo trip").slice(0, 80);
+    const lang = String(b.lang || "").toLowerCase().startsWith("fr") ? "fr" : "en";
     const date = String(b.date || "").slice(0, 10);
     const time = String(b.time || "").slice(0, 5);
     const title = ("Limo trip - " + vehicle + (date ? " - " + date : "") + (time ? " " + time : "")).slice(0, 120);
@@ -74,7 +75,7 @@ module.exports = async function handler(req, res) {
         location_id: locationId,
       },
       checkout_options: {
-        redirect_url: "https://montreallimoservice.ca/booking.html?payment=done",
+        redirect_url: lang === "fr" ? "https://montreallimoservice.ca/fr/booking-success.html" : "https://montreallimoservice.ca/booking-success.html",
         ask_for_shipping_address: false,
         merchant_support_email: "info@montreallimoservice.ca",
         // Tipping on the Square checkout page: Square presents 15% / 20% / 25%
