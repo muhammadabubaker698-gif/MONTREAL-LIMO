@@ -3223,6 +3223,12 @@ body.nav-open{ overflow:hidden !important; }
 </style>
 <style>
 .hero-wrap .hero-sub{ color:#1B2432 !important; }
+
+.showcase-card.sc-photo{padding:0 0 18px;overflow:hidden}
+.showcase-card.sc-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
+.showcase-card.sc-photo h3{margin:18px 18px 0}
+.showcase-card.sc-photo p{margin-left:18px;margin-right:18px}
+.showcase-card.sc-photo a{margin-left:18px}
 </style>
 </head>
 <body>
@@ -3235,7 +3241,7 @@ body.nav-open{ overflow:hidden !important; }
 </a>
 <nav class="main-nav">
 <a data-i18n="nav_services" href="services.html">Services</a>
-<a data-i18n="nav_fleet" href="#fleet">Fleet</a>
+<a data-i18n="nav_fleet" href="#fleet">Fleet</a> <a data-i18n="nav_routes" href="#popular-routes">Popular Routes</a>
 <a data-i18n="nav_airports" href="airport-transfer-montreal.html">Airports</a>
 <a data-i18n="nav_corp" href="corporate-limo-montreal.html">Corporate</a>
 <a data-i18n="nav_faq" href="#faq">FAQ</a>
@@ -3254,7 +3260,7 @@ body.nav-open{ overflow:hidden !important; }
 <nav aria-hidden="true" aria-label="Mobile menu" class="drawer" id="mobileDrawer">
 <button class="drawer-close" aria-label="Close menu" type="button">&#10005;</button>
 <a data-i18n="nav_book" href="booking.html">Book online</a>
-<a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a>
+<a data-i18n="nav_corporate" href="#corporate">Corporate program</a><a data-i18n="nav_fleet" href="#fleet">Our fleet</a> <a href="#popular-routes">Popular routes</a>
 <a data-i18n="nav_services" href="services.html">Services</a>
 <a href="black-truck-service-montreal.html">Black truck service</a>
 <a href="airport-transfer-montreal.html">Airport transfer</a>
@@ -3606,22 +3612,22 @@ body.nav-open{ overflow:hidden !important; }
 <h2>Montreal Limousine Service for Airport, Wedding, Corporate and Private Transportation</h2>
 <p class="subtitle">Airport pickups at YUL, wedding-day transportation, executive travel and private chauffeur rides — every trip backed by professional chauffeurs, premium vehicles and fixed, up-front pricing.</p>
 <div class="services-showcase">
-  <div class="showcase-card">
+  <div class="showcase-card sc-photo"><img src="/services-airport-jet.jpg" alt="Black Escalade waiting beside a private jet" loading="lazy"/>
     <h3>Airport limo service Montreal</h3>
     <p>Private transfers to and from YUL with flight tracking, meet and greet options, and professional chauffeurs.</p>
     <a href="airport-transfer-montreal.html">View airport service</a>
   </div>
-  <div class="showcase-card">
+  <div class="showcase-card sc-photo"><img src="/luxury.jpg" alt="Black Cadillac Escalade arriving for a wedding celebration" loading="lazy"/>
     <h3>Wedding limo Montreal</h3>
     <p>Elegant luxury transportation for ceremonies, receptions, bridal party movements, and VIP guest arrivals.</p>
     <a href="#premium-services">View wedding package</a>
   </div>
-  <div class="showcase-card">
+  <div class="showcase-card sc-photo"><img src="/services-corporate-dusk.jpg" alt="Escalade fleet lined up at dusk for corporate transportation" loading="lazy"/>
     <h3>Corporate limousine service</h3>
     <p>Executive transportation for meetings, hotels, conventions, airport pickups, and client-facing travel.</p>
     <a href="#corporate">View corporate program</a>
   </div>
-  <div class="showcase-card">
+  <div class="showcase-card sc-photo"><img src="/services-hourly-night.jpg" alt="Chauffeur opening an Escalade door at night in downtown Montreal" loading="lazy" style="object-position:center 72%"/>
     <h3>Hourly chauffeur service</h3>
     <p>Flexible by-the-hour bookings for nights out, roadshows, events, shopping, and custom private rides.</p>
     <a href="#booking">Start booking</a>
@@ -5707,7 +5713,7 @@ function getQcCorridorBounds(){
     en: {
       brand_name: "Montreal Limo Services",
 
-      nav_fleet: "Fleet",
+      nav_fleet: "Fleet", nav_routes: "Popular Routes",
         nav_book: "Book online",
         nav_corporate: "Corporate program",
         nav_services: "Services",
@@ -5895,7 +5901,7 @@ function getQcCorridorBounds(){
     fr: {
       brand_name: "Montreal Limo Services",
 
-      nav_fleet: "Notre flotte",
+      nav_fleet: "Notre flotte", nav_routes: "Routes populaires",
         nav_book: "R\u00e9server en ligne",
         nav_corporate: "Programme corporatif",
         nav_services: "Services",
