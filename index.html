@@ -3168,6 +3168,11 @@ h1.hero-title{ margin:16px 0 0; }
 .route-card .rprice{ margin-top:12px; font-family:"Playfair Display",Georgia,serif; font-size:30px; color:#111827; }
 .route-card .rprice small{ font-size:13px; color:#B08D3E; font-weight:800; letter-spacing:.08em; display:block; }
 .route-card .btn{ margin-top:14px; }
+.route-card.route-card-photo{ padding:0; overflow:hidden; }
+.route-card.route-card-photo img{ width:100%; height:150px; object-fit:cover; display:block; }
+.route-card.route-card-photo h3{ margin:18px 22px 0; }
+.route-card.route-card-photo .rmeta, .route-card.route-card-photo .rprice{ margin-left:22px; margin-right:22px; }
+.route-card.route-card-photo .btn{ margin-left:22px; margin-bottom:22px; }
 @media (max-width:980px){ .route-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:600px){ .route-grid{ grid-template-columns:1fr; } }
 
@@ -3591,10 +3596,10 @@ body.nav-open{ overflow:hidden !important; }
 <div class="route-grid">
 <div class="route-card"><h3>Montreal → YUL Airport</h3><div class="rmeta">24 km · ~30 min</div><div class="rprice"><small data-i18n="r_from">FROM</small>$150</div><a class="btn btn-primary" href="airport-transfer-montreal.html" data-i18n="r_book">Book this route</a></div>
 <div class="route-card"><h3>Montreal → Mont-Tremblant</h3><div class="rmeta">131 km · ~1 h 30</div><div class="rprice"><small data-i18n="r_from">FROM</small>$650</div><a class="btn btn-primary" href="montreal-to-mont-tremblant-limo.html" data-i18n="r_book">Book this route</a></div>
-<div class="route-card"><h3>Montreal → Ottawa</h3><div class="rmeta">199 km · ~2 h 10</div><div class="rprice"><small data-i18n="r_from">FROM</small>$850</div><a class="btn btn-primary" href="montreal-to-ottawa-limo.html" data-i18n="r_book">Book this route</a></div>
-<div class="route-card"><h3>Montreal → Quebec City</h3><div class="rmeta">263 km · ~2 h 55</div><div class="rprice"><small data-i18n="r_from">FROM</small>$950</div><a class="btn btn-primary" href="montreal-to-quebec-city-limo.html" data-i18n="r_book">Book this route</a></div>
-<div class="route-card"><h3>Montreal → Toronto</h3><div class="rmeta">542 km · ~5 h 25</div><div class="rprice"><small data-i18n="r_from">FROM</small>$1,950</div><a class="btn btn-primary" href="montreal-to-toronto-limo.html" data-i18n="r_book">Book this route</a></div>
-<div class="route-card"><h3>Montreal → USA Destinations</h3><div class="rmeta">Vermont · Boston · New York · and other cities</div><div class="rprice"><small data-i18n="r_from">FROM</small>$1,200</div><a class="btn btn-primary" href="montreal-to-usa-limo.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card route-card-photo"><img src="/montreal-to-ottawa-limo-parliament.jpg" alt="Parliament Hill, Ottawa" loading="lazy"/><h3>Montreal → Ottawa</h3><div class="rmeta">199 km · ~2 h 10</div><div class="rprice"><small data-i18n="r_from">FROM</small>$850</div><a class="btn btn-primary" href="montreal-to-ottawa-limo.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card route-card-photo"><img src="/montreal-to-quebec-city-limo-chateau-frontenac.jpg" alt="Château Frontenac, Old Quebec City" loading="lazy"/><h3>Montreal → Quebec City</h3><div class="rmeta">263 km · ~2 h 55</div><div class="rprice"><small data-i18n="r_from">FROM</small>$950</div><a class="btn btn-primary" href="montreal-to-quebec-city-limo.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card route-card-photo"><img src="/montreal-to-toronto-limo-skyline.jpg" alt="Toronto skyline and CN Tower" loading="lazy"/><h3>Montreal → Toronto</h3><div class="rmeta">542 km · ~5 h 25</div><div class="rprice"><small data-i18n="r_from">FROM</small>$1,950</div><a class="btn btn-primary" href="montreal-to-toronto-limo.html" data-i18n="r_book">Book this route</a></div>
+<div class="route-card route-card-photo"><img src="/montreal-to-usa-limo-statue-of-liberty.jpg" alt="Statue of Liberty, New York" loading="lazy"/><h3>Montreal → USA Destinations</h3><div class="rmeta">Vermont · Boston · New York · and other cities</div><div class="rprice"><small data-i18n="r_from">FROM</small>$1,200</div><a class="btn btn-primary" href="montreal-to-usa-limo.html" data-i18n="r_book">Book this route</a></div>
 </div>
 </section>
 <section class="section reveal" id="premium-services">
