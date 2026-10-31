@@ -4042,11 +4042,13 @@ body.nav-open{ overflow:hidden !important; }
 
     total = Math.max(50, total);
 
-    // Vehicle adjustments
-    if (vehicleId === "escalade") total *= 1.15;
-    if (vehicleId === "tesla") total *= 0.85;
-    if (vehicleId === "sprinter") total *= 1.50;
-    // suburban and denali use the base price
+    // Vehicle adjustments, including Bakar's 2026-10-31 price cuts:
+    // Tesla and Infiniti QX60 -20%, every other vehicle -10%
+    if (vehicleId === "escalade") total *= 1.035;
+    if (vehicleId === "tesla") total *= 0.68;
+    if (vehicleId === "sprinter") total *= 1.35;
+    if (vehicleId === "qx60") total *= 0.80;
+    if (vehicleId === "suburban" || vehicleId === "denali") total *= 0.90;
 
     // Round to nearest $10
     let finalTotal = Math.round(total / 10) * 10;
