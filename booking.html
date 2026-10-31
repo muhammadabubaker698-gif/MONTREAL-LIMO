@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" name="viewport"/>
 <title>Book Your Transfer | Montreal Limousine Service</title>
 <meta content="Book your Montreal limo transfer online — point to point or hourly chauffeur service. Fixed pricing, no hidden fees, 24/7 availability and free 60-minute waiting on airport pickups." name="description"/>
 <meta content="montreal limo service, montreal limousine service, limo service montreal, montreal airport limo, YUL airport transfer, chauffeur service Montreal, Mont-Tremblant limo, Quebec City limo, Laval limo service, corporate transportation Montreal, wedding limo Montreal" name="keywords"/>
@@ -508,7 +508,7 @@
 
   .overlay-body{
     height: calc(var(--vh) - 76px);
-    height: calc(-webkit-fill-available - 76px);
+    height: calc(100dvh - 76px);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -4140,6 +4140,17 @@ if (input.value.trim().length >= 2) doSearch();
     setTimeout(()=>forceIOSPaint(overlayId), 350);
   }
 
+  // iOS Safari can leave the overlay's scrolled content unpainted (blank
+  // white) when the keyboard opens on a form field — the fields are there
+  // and focusable, just not drawn. Nudge a repaint once the keyboard has
+  // settled so the field being typed into stays visible.
+  document.addEventListener("focusin", function(e){
+    const ov = e.target && e.target.closest ? e.target.closest(".overlay.show") : null;
+    if (!ov) return;
+    setTimeout(()=>forceIOSPaint(ov.id), 300);
+    setTimeout(()=>forceIOSPaint(ov.id), 650);
+  });
+
   function openOverlay(id, pushHistory = true){
     lockBodyScroll();
     document.documentElement.classList.add("overlay-open");
@@ -4198,7 +4209,6 @@ if (input.value.trim().length >= 2) doSearch();
     if (document.getElementById("overlayCheckout")?.classList.contains("show")) syncFlowBarHeight("overlayCheckout");
   });
   window.visualViewport?.addEventListener("resize", syncViewportHeight);
-  window.visualViewport?.addEventListener("scroll", syncViewportHeight);
 
   function backToSearch(){ history.back(); }
   function backToVehicles(){ history.back(); }
