@@ -3503,7 +3503,7 @@ body.nav-open{ overflow:hidden !important; }
   }
 
   function getTaxBreakdown(basePrice, airportFee){
-    const roundedBase = Math.round(Number(basePrice || 0) / 10) * 10;
+    const roundedBase = Math.round(Number(basePrice || 0));
     const gst = roundedBase * 0.05;
     const qst = roundedBase * 0.09975;
     const fee = Number(airportFee || 0);
