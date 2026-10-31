@@ -14,6 +14,16 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ ok: false, error: "RESEND_API_KEY is not visible to this deployment yet." });
   }
 
+  // Shape-only diagnostics (never the value): identifies WHAT was pasted —
+  // a real Resend key is "re_" + ~33 chars, no spaces, no dashes.
+  const _k = process.env.RESEND_API_KEY;
+  const shape = {
+    len: _k.length,
+    starts_re: _k.startsWith("re_"),
+    has_space: /\s/.test(_k),
+    has_dash: _k.includes("-"),
+  };
+
   const from = process.env.RESEND_FROM || "Montreal Limo Bookings <bookings@monttremblantlimoservices.com>";
   const to = process.env.BOOKING_NOTIFY_EMAIL || "info@montreallimoservice.ca";
 
@@ -36,9 +46,9 @@ module.exports = async function handler(req, res) {
     const data = await er.json().catch(() => ({}));
     if (!er.ok || !data.id) {
       console.error("Test email failed:", JSON.stringify(data).slice(0, 400));
-      return res.status(502).json({ ok: false, error: "Resend rejected the test email.", detail: data });
+      return res.status(502).json({ ok: false, error: "Resend rejected the test email.", detail: data, shape: shape });
     }
-    return res.status(200).json({ ok: true, email_id: data.id, to: to, from: from });
+    return res.status(200).json({ ok: true, email_id: data.id, to: to, from: from, shape: shape });
   } catch (err) {
     console.error("Mail test error:", err);
     return res.status(500).json({ ok: false, error: String(err && err.message || err).slice(0, 300) });
