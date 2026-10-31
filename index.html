@@ -4892,6 +4892,19 @@ if (input.value.trim().length >= 2) doSearch();
 
   const SQUARE_CHECKOUT_API = "https://montreal-limo.vercel.app/api/create-square-checkout";
 
+  function flagMissingField(id, message){
+    const statusEl = $("checkoutStatus");
+    if (statusEl) statusEl.textContent = message;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.borderColor = "#c0392b";
+    el.style.boxShadow = "0 0 0 3px rgba(192,57,43,.18)";
+    const clear = () => { el.style.borderColor = ""; el.style.boxShadow = ""; el.removeEventListener("input", clear); };
+    el.addEventListener("input", clear);
+    try { el.scrollIntoView({ behavior:"smooth", block:"center" }); } catch(e) { el.scrollIntoView(); }
+    setTimeout(() => { try { el.focus({ preventScroll:true }); } catch(e) { try { el.focus(); } catch(_){} } }, 350);
+  }
+
   async function startSquareCheckoutFromOverlay(){
     const statusEl = $("checkoutStatus");
     statusEl.textContent = "";
@@ -4904,14 +4917,14 @@ if (input.value.trim().length >= 2) doSearch();
 
     const name = val("c_name");
     if (!name){
-      statusEl.textContent = "Please enter your name.";
+      flagMissingField("c_name", "Please enter your name.");
       return;
     }
 
     const email = val("c_email");
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
     if (!emailOk){
-      statusEl.textContent = "Please enter a valid email address.";
+      flagMissingField("c_email", "Please enter a valid email address.");
       return;
     }
 
@@ -4966,14 +4979,14 @@ if (input.value.trim().length >= 2) doSearch();
 
     const name = val("c_name");
     if (!name){
-      statusEl.textContent = "Please enter your name.";
+      flagMissingField("c_name", "Please enter your name.");
       return;
     }
 
     const email = val("c_email");
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email || "");
     if (!emailOk){
-      statusEl.textContent = "Please enter a valid email address.";
+      flagMissingField("c_email", "Please enter a valid email address.");
       return;
     }
 
