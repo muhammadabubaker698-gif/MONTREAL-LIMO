@@ -3393,6 +3393,7 @@ body.nav-open{ overflow:hidden !important; }
 <div class="flow-wrap">
 <div class="flow-steps"><span data-i18n="chk_step_search">x</span><span>›</span><span data-i18n="chk_step_class">x</span><span>›</span><span class="on" data-i18n="chk_step_checkout">x</span></div>
 <div class="summary-pill" id="checkoutSummary"></div>
+<div class="urgent-note" data-i18n-html="urgent_note_html" id="urgentNote" style="display:none;margin-top:12px;border:1px solid rgba(176,141,62,.45);background:rgba(197,162,83,.10);border-radius:14px;padding:12px 14px;font-weight:750;color:rgba(11,18,32,.85);"><b>Short-notice trip:</b> your pickup is within the next 24 hours. Your booking will be processed normally, but for the fastest response we recommend calling us at <a href="tel:+15142248252" style="color:inherit;text-decoration:underline;">+1 (514) 224-8252</a> so we can confirm your chauffeur right away.</div>
 <div class="flow-h1" data-i18n="ov_your_details">Your details</div>
 <div class="flow-sub" data-i18n-html="ov_details_sub_html">Enter your details, then pay securely online with Square — card, Apple Pay and Google Pay accepted.</div>
 <label data-i18n="lbl_name" for="c_name">Name</label>
@@ -4311,6 +4312,18 @@ if (input.value.trim().length >= 2) doSearch();
       <div><b>${when}</b></div>
       <small>${route} • ${chosen?.name || ""}</small>
     `;
+
+    const un = $("urgentNote");
+    if (un){
+      let showUrgent = false;
+      try {
+        if (state.date && state.time){
+          const pickupAt = new Date(state.date + "T" + state.time + ":00");
+          if (!isNaN(pickupAt)) showUrgent = (pickupAt.getTime() - Date.now()) < 24*60*60*1000;
+        }
+      } catch(e){}
+      un.style.display = showUrgent ? "" : "none";
+    }
 
     if (chosen){
       updateCheckoutPrice(chosen.total, currency);
@@ -5299,6 +5312,7 @@ function getQcCorridorBounds(){
 
       ov_your_details: "Your details",
       terms_agree_html: "By paying or sending a booking request for this trip, you agree to our <a href='terms-and-conditions.html' target='_blank' rel='noreferrer' style='color:inherit;text-decoration:underline;'>Terms &amp; Conditions</a>.",
+      urgent_note_html: "<b>Short-notice trip:</b> your pickup is within the next 24 hours. Your booking will be processed normally, but for the fastest response we recommend calling us at <a href='tel:+15142248252' style='color:inherit;text-decoration:underline;'>+1 (514) 224-8252</a> so we can confirm your chauffeur right away.",
       footer_terms_html: "<a href='terms-and-conditions.html'>Terms &amp; Conditions</a>",
       ov_details_sub_html: "Enter your details, then pay securely online with Square — card, Apple Pay and Google Pay accepted.",
       lbl_name: "Name",
@@ -5455,6 +5469,7 @@ function getQcCorridorBounds(){
 
       ov_your_details: "Vos coordonnées",
       terms_agree_html: "En payant ou en envoyant une demande de réservation pour ce trajet, vous acceptez nos <a href='fr/terms-and-conditions.html' target='_blank' rel='noreferrer' style='color:inherit;text-decoration:underline;'>Termes et conditions</a>.",
+      urgent_note_html: "<b>Trajet à court délai :</b> votre prise en charge est prévue d'ici 24 heures. Votre réservation sera traitée normalement, mais pour la réponse la plus rapide, nous vous recommandons de nous appeler au <a href='tel:+15142248252' style='color:inherit;text-decoration:underline;'>+1 (514) 224-8252</a> afin que nous confirmions votre chauffeur immédiatement.",
       footer_terms_html: "<a href='fr/terms-and-conditions.html'>Termes et conditions</a>",
       ov_details_sub_html: "Entrez vos informations, puis payez en ligne en toute sécurité avec Square — carte, Apple Pay et Google Pay acceptés.",
       lbl_name: "Nom",
