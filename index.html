@@ -3482,7 +3482,7 @@ body.nav-open{ overflow:hidden !important; }
   <div style="display:flex;justify-content:space-between;gap:10px;padding-top:4px;border-top:1px dashed rgba(11,18,32,.10);"><span>Total incl. tax</span><span id="checkoutInclTax">—</span></div>
 </div>
 </div>
-<div class="flow-actions" style="margin-top:14px;">
+<div class="flow-actions" style="margin-top:14px;"><div class="tinyhint" data-i18n-html="terms_agree_html" style="flex:0 0 100%;text-align:center;margin:0 0 4px;">By paying or sending a booking request for this trip, you agree to our <a href="terms-and-conditions.html" target="_blank" rel="noreferrer" style="color:inherit;text-decoration:underline;">Terms &amp; Conditions</a>.</div>
 <button class="btn" data-i18n="btn_back" onclick="backToVehicles()" type="button">Back</button>
 <button class="btn btn-primary" data-i18n="btn_send_request" onclick="startSquareCheckoutFromOverlay()" type="button">Pay with Square</button>
 <button class="btn" data-i18n="btn_whatsapp" onclick="sendWhatsAppFromOverlay()" type="button">WhatsApp</button>
@@ -3922,7 +3922,7 @@ body.nav-open{ overflow:hidden !important; }
 <a href="tel:+15142248252">+1 (514) 224-8252</a>
 </br></br></div>
 <div>
-        © <span id="year"></span> <span data-i18n="footer_rights">All rights reserved</span>
+        © <span id="year"></span> <span data-i18n="footer_rights">All rights reserved</span><br/><span data-i18n-html="footer_terms_html"><a href="terms-and-conditions.html">Terms &amp; Conditions</a></span>
 </div>
 </div>
 </footer>
@@ -5803,6 +5803,8 @@ function getQcCorridorBounds(){
       btn_continue: "Continue",
 
       ov_your_details: "Your details",
+      terms_agree_html: "By paying or sending a booking request for this trip, you agree to our <a href='terms-and-conditions.html' target='_blank' rel='noreferrer' style='color:inherit;text-decoration:underline;'>Terms &amp; Conditions</a>.",
+      footer_terms_html: "<a href='terms-and-conditions.html'>Terms &amp; Conditions</a>",
       ov_details_sub_html: "Enter your details, then pay securely online with Square — card, Apple Pay and Google Pay accepted.",
       lbl_name: "Name",
       lbl_phone: "Phone",
@@ -5990,6 +5992,8 @@ function getQcCorridorBounds(){
       btn_continue: "Continuer",
 
       ov_your_details: "Vos coordonnées",
+      terms_agree_html: "En payant ou en envoyant une demande de réservation pour ce trajet, vous acceptez nos <a href='fr/terms-and-conditions.html' target='_blank' rel='noreferrer' style='color:inherit;text-decoration:underline;'>Termes et conditions</a>.",
+      footer_terms_html: "<a href='fr/terms-and-conditions.html'>Termes et conditions</a>",
       ov_details_sub_html: "Entrez vos informations, puis payez en ligne en toute sécurité avec Square — carte, Apple Pay et Google Pay acceptés.",
       lbl_name: "Nom",
       lbl_phone: "Téléphone",
