@@ -3324,6 +3324,8 @@ body.nav-open{ overflow:hidden !important; }
 <!-- route + pricing -->
 <input id="h_distance_m" type="hidden" value=""/>
 <input id="h_duration_s" type="hidden" value=""/>
+<input id="h_base_distance_m" type="hidden" value=""/>
+<input id="h_base_duration_s" type="hidden" value=""/>
 <input id="h_price_estimate" type="hidden" value=""/>
 <input id="h_pickup_airport" type="hidden" value=""/>
 <input id="h_dropoff_airport" type="hidden" value=""/>
@@ -4017,6 +4019,38 @@ body.nav-open{ overflow:hidden !important; }
     };
   }
 
+  function haversineKm(lat1, lng1, lat2, lng2){
+    const R = 6371;
+    const toRad = (x) => x * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const sLat = Math.sin(dLat / 2);
+    const sLng = Math.sin(dLng / 2);
+    const a = sLat * sLat + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * sLng * sLng;
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  // Bakar's destination minimums (Option B, set 2026-10-31): a trip ending in
+  // one of these destinations never prices below its floor in the engine.
+  function destinationFloor(){
+    const text = (state.dropoff || val("h_dropoff") || "").toLowerCase();
+    const lat = Number(state.dropoff_lat || val("h_dropoff_lat"));
+    const lng = Number(state.dropoff_lng || val("h_dropoff_lng"));
+    if (Number.isFinite(lat) && Number.isFinite(lng) && lat && lng){
+      if (haversineKm(lat, lng, 43.6532, -79.3832) <= 60) return 1760;
+      if (haversineKm(lat, lng, 45.4215, -75.6972) <= 55) return 750;
+      if (haversineKm(lat, lng, 46.8139, -71.2080) <= 50) return 1030;
+      if (haversineKm(lat, lng, 46.1185, -74.5962) <= 45) return 460;
+    }
+    if (/toronto|mississauga|brampton|vaughan|markham|scarborough|etobicoke|north york|richmond hill/.test(text)) return 1760;
+    if (/ottawa|gatineau|kanata|nepean|orleans|orléans/.test(text)) return 750;
+    if (/quebec city|ville de québec|ville de quebec|vieux-québec|vieux-quebec|old quebec|sainte-foy|sillery|beauport|charlesbourg/.test(text)) return 1030;
+    if (/tremblant/.test(text)) return 460;
+    if (/\busa\b|united states/.test(text)) return 1200;
+    if (/,\s*(vt|ny|ma|nh|me|ct|nj|pa|ri|fl|tx|ca|il|oh|ga|nc|sc|va|md|de|mi|wi|mn|co|az|nv|or|wa)\b/.test(text)) return 1200;
+    return 0;
+  }
+
   function vehiclePriceEstimate(vehicleId, distanceM, durationS){
     const v = LOCAL_RATES.find(x=>x.id===vehicleId);
     if (!v) return 0;
@@ -4040,6 +4074,17 @@ body.nav-open{ overflow:hidden !important; }
     // first 60 minutes is added at the same rates. Short trips are unaffected.
     total += (Math.max(0, km - 50) * 2.50) + (Math.max(0, minutes - 60) * 1.10);
 
+    // Positioning: the chauffeur starts from downtown Montreal. When the
+    // pickup is far from base, the drive to reach it is priced too, beyond a
+    // free zone of 25 km / 30 minutes from base (Montreal island, Laval,
+    // the South Shore and YUL are inside it).
+    const baseKm = Number(document.getElementById("h_base_distance_m")?.value || 0) / 1000;
+    const baseMin = Number(document.getElementById("h_base_duration_s")?.value || 0) / 60;
+    if (baseKm || baseMin){
+      total += (Math.max(0, baseKm - 25) * 2.50) + (Math.max(0, baseMin - 30) * 1.10);
+    }
+
+
     total = Math.max(50, total);
 
     // Vehicle adjustments, including Bakar's 2026-10-31 price cuts:
@@ -4060,6 +4105,12 @@ body.nav-open{ overflow:hidden !important; }
     // Per-vehicle minimum trip charge (one-way)
     const floor = Number(v.minTrip || 0);
     if (floor && finalTotal < floor) finalTotal = floor;
+
+    // Destination minimum (Bakar): trips to popular destinations never price
+    // below that destination's floor, whatever the vehicle.
+    const dFloor = destinationFloor();
+    if (dFloor && finalTotal < dFloor) finalTotal = dFloor;
+
 
     return finalTotal;
   }
@@ -5279,6 +5330,8 @@ function updateRouteAndEstimate(){
     setRouteUI({distanceM:null, durationS:null, price:null, badges:[]});
     const dr = document.getElementById("h_distance_m"); if (dr) dr.value = "";
     const du = document.getElementById("h_duration_s"); if (du) du.value = "";
+    const bd0 = document.getElementById("h_base_distance_m"); if (bd0) bd0.value = "";
+    const bu0 = document.getElementById("h_base_duration_s"); if (bu0) bu0.value = "";
     const pe = document.getElementById("h_price_estimate"); if (pe) pe.value = "";
     return;
   }
@@ -5319,6 +5372,18 @@ function updateRouteAndEstimate(){
       const dr = document.getElementById("h_distance_m"); if (dr) dr.value = String(distanceM ?? "");
       const du = document.getElementById("h_duration_s"); if (du) du.value = String(durationS ?? "");
       const pe = document.getElementById("h_price_estimate"); if (pe) pe.value = String(price ?? "");
+    }
+  );
+
+  // Positioning leg: downtown Montreal base -> pickup (numbers only, never drawn)
+  ds.directionsService.route(
+    { origin: { lat: 45.5019, lng: -73.5674 }, destination: p, travelMode: google.maps.TravelMode.DRIVING },
+    (res2, status2) => {
+      const bd = document.getElementById("h_base_distance_m");
+      const bu = document.getElementById("h_base_duration_s");
+      const leg2 = (status2 === "OK" && res2 && res2.routes && res2.routes[0] && res2.routes[0].legs) ? res2.routes[0].legs[0] : null;
+      if (bd) bd.value = leg2 && leg2.distance ? String(leg2.distance.value) : "";
+      if (bu) bu.value = leg2 && leg2.duration ? String(leg2.duration.value) : "";
     }
   );
 }
